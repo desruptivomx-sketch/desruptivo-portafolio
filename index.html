@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c1171a">
+  <title>Desruptivo — Ideas que se ven. Trabajo que se nota.</title>
+  <meta name="description" content="El portafolio de Desruptivo. Diseño, contenido y producción audiovisual con una misma dirección creativa. Desde Mérida, Yucatán.">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon-32.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
+  <link rel="canonical" href="https://desruptivomx-sketch.github.io/desruptivo-portafolio/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="Desruptivo">
+  <meta property="og:title" content="Desruptivo — Ideas que se ven. Trabajo que se nota.">
+  <meta property="og:description" content="Una selección de nuestro trabajo en diseño y producción audiovisual. All Eyes On Us.">
+  <meta property="og:url" content="https://desruptivomx-sketch.github.io/desruptivo-portafolio/">
+  <meta property="og:image" content="https://desruptivomx-sketch.github.io/desruptivo-portafolio/assets/img/og-desruptivo.jpg">
+  <meta property="og:image:alt" content="Desruptivo, agencia creativa integral">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/SquidBoy-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/NewBlack-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="projects.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#proyectos">Saltar al portafolio</a>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Desruptivo — inicio"><img src="assets/img/logo-desruptivo.png" width="3591" height="1316" alt="Desruptivo"></a>
+    <span class="header-note">AGENCIA CREATIVA INTEGRAL<br>MÉRIDA, YUCATÁN · MX</span>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menú <span aria-hidden="true">+</span></button>
+    <nav id="main-nav" aria-label="Navegación principal">
+      <a href="#proyectos">Nuestro trabajo <span class="nav-number">01</span></a>
+      <a class="nav-contact" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero page-pad" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-topline mono"><span>INDEPENDIENTES DE PENSAMIENTO.</span><span>PORTAFOLIO / SELECCIÓN CREATIVA</span></div>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <h1 id="hero-title">IDEAS QUE<br>SE VEN.<br><span>TRABAJO QUE<br>SE NOTA.</span></h1>
+          <div class="hero-bottom"><p>Cuestionamos lo establecido.<br>Mezclamos disciplinas.<br>Y hacemos que tu marca se note.</p><a class="round-link" href="#proyectos" aria-label="Explorar nuestro trabajo"><span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="hero-art">
+          <div class="hero-annotation">All eyes on us.</div>
+          <div class="hero-project hero-project-back"><img src="assets/projects/mcdonalds-primavera-story.jpg" width="900" height="1600" alt="Pieza de primavera para McDonald's México, con tipografía blanca sobre rojo" fetchpriority="high"></div>
+          <div class="hero-project hero-project-front"><img src="assets/projects/boro-tipografia.jpg" width="900" height="1125" alt="Cartel Boro: un cono de helado rodeado de tipografía" fetchpriority="high"><span class="project-sticker mono">HECHO PARA<br>ROBAR MIRADAS.</span></div>
+          <img class="hero-star" src="assets/img/hero-estrella-deco.png" width="256" height="260" alt="">
+          <div class="hero-art-caption mono"><span>CONCEPTO. DISEÑO. ACCIÓN.</span><span>↙ EXPLORA ABAJO</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="brand-strip" aria-label="Marketing, ingeniería, multimedia y dirección creativa"><span>MARKETING</span><span aria-hidden="true">✳</span><span>INGENIERÍA</span><span aria-hidden="true">✳</span><span>MULTIMEDIA</span><span aria-hidden="true">✳</span><span>DIRECCIÓN CREATIVA</span><span aria-hidden="true">✳</span></div>
+
+    <section id="proyectos" class="work-section page-pad" aria-labelledby="work-title">
+      <div class="section-top mono"><span>01 / NUESTRO TRABAJO</span><span>LAS IDEAS, EN LA CALLE.</span></div>
+      <div class="work-heading"><h2 id="work-title">MENOS BLA.<br><span>MÁS ESTO.</span></h2><p>Una selección de proyectos en los que<br class="desktop-break"> pusimos la cabeza, las manos y el ojo.</p></div>
+      <div class="portfolio-tools"><div class="filters" role="group" aria-label="Filtrar proyectos"><button class="filter is-active" data-filter="all" aria-pressed="true">Todo <span>13</span></button><button class="filter" data-filter="design" aria-pressed="false">Diseño <span>8</span></button><button class="filter" data-filter="video" aria-pressed="false">Audiovisual <span>5</span></button></div><p class="portfolio-count mono" id="project-count" role="status" aria-live="polite"></p></div>
+      <div class="project-grid" id="project-grid"></div>
+      <noscript><div class="no-script"><p>Explora una selección de nuestro trabajo:</p><a href="assets/projects/mcdonalds-semaforo.jpg">McDonald's México</a><a href="assets/projects/boro-tipografia.jpg">Boro</a><a href="assets/projects/pajaro-en-piedra.jpg">Archipiélago</a><a href="assets/videos/archipielago-indispensables.mp4">Video de Archipiélago</a></div></noscript>
+      <div class="more-row"><button class="button button-outline" id="load-more" hidden>Ver más proyectos <span aria-hidden="true">+</span></button><span class="mono">DIFERENTES MARCAS. EL MISMO OJO.</span></div>
+    </section>
+
+    <section class="contact-section page-pad" id="contacto" aria-labelledby="contact-title">
+      <div class="section-top mono"><span>02 / TU SIGUIENTE PROYECTO</span><span>QUE SE NOTE.</span></div>
+      <p class="handwritten">Nos gustan las buenas preguntas.</p>
+      <a class="contact-title-link" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20vi%20su%20portafolio%20y%20quiero%20platicar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer"><h2 id="contact-title">¿QUÉ TRAES<br>EN MENTE?</h2><span class="contact-arrow" aria-hidden="true">↗</span><span class="sr-only"> — Escríbenos por WhatsApp (abre otra pestaña)</span></a>
+      <div class="contact-bottom"><p>Cuéntanos tu idea.<br>Vamos a darle forma.</p><a class="button button-light" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20vi%20su%20portafolio%20y%20quiero%20platicar%20sobre%20un%20proyecto." target="_blank" rel="noopener noreferrer">Hablemos por WhatsApp <span aria-hidden="true">↗</span></a><a class="email-link" href="mailto:desruptivo@outlook.com?subject=Proyecto%20nuevo%20desde%20el%20portafolio">desruptivo@outlook.com</a></div>
+    </section>
+  </main>
+
+  <footer class="page-pad"><a class="brand" href="#inicio" aria-label="Volver al inicio"><img src="assets/img/logo-desruptivo.png" width="3591" height="1316" alt="Desruptivo" loading="lazy"></a><span class="mono">MÉRIDA, YUCATÁN · MÉXICO<br>© <span id="year">2026</span> DESRUPTIVO</span><div class="footer-links"><a href="https://instagram.com/desruptivo_mx" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://desruptivomx-sketch.github.io/desruptivo-web/" target="_blank" rel="noopener noreferrer">Nuestra web ↗</a><a href="#inicio">Volver arriba ↑</a></div></footer>
+
+  <dialog id="project-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="dialog-shell"><div class="dialog-top"><span class="mono" id="dialog-category"></span><button class="dialog-close" aria-label="Cerrar proyecto">Cerrar <span aria-hidden="true">×</span></button></div><div class="dialog-content"><div class="dialog-media" id="dialog-media"></div><div class="dialog-info"><span class="mono">DESRUPTIVO / PORTAFOLIO</span><h2 id="dialog-title"></h2><p id="dialog-description"></p><div id="media-navigation" class="media-navigation"><button id="previous-media" aria-label="Ver pieza anterior">←</button><span id="media-counter" class="mono" aria-live="polite"></span><button id="next-media" aria-label="Ver pieza siguiente">→</button></div><a class="text-link" id="original-media" target="_blank" rel="noopener noreferrer">Abrir pieza original ↗</a></div></div></div></dialog>
+</body>
+</html>
