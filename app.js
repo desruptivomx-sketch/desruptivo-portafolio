@@ -1,5 +1,44 @@
 (() => {
   'use strict';
+  document.documentElement.classList.add('js');
+
+  // Aparición al hacer scroll (progressive enhancement: sin JS, .reveal
+  // nunca se oculta porque el CSS solo aplica opacity:0 bajo .js)
+  const reveals = document.querySelectorAll('.reveal');
+  if (reveals.length) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(el => io.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('in'));
+    }
+  }
+
+  // Tarjetas de proyecto: inclinación 3D siguiendo el mouse (delegado en el
+  // contenedor para que siga funcionando cuando el grid se re-renderiza)
+  if (matchMedia('(pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    let tilted = null;
+    const resetTilt = el => { el.style.transform = ''; };
+    document.querySelectorAll('.project-grid').forEach(pgrid => {
+      pgrid.addEventListener('mousemove', event => {
+        const card = event.target.closest('.project-image');
+        if (!card || !pgrid.contains(card)) { if (tilted) { resetTilt(tilted); tilted = null; } return; }
+        if (tilted && tilted !== card) resetTilt(tilted);
+        tilted = card;
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left, y = event.clientY - rect.top;
+        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
+        const rotateX = -((y - rect.height / 2) / (rect.height / 2)) * 6;
+        card.style.transform = `rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
+      });
+      pgrid.addEventListener('mouseleave', () => { if (tilted) { resetTilt(tilted); tilted = null; } });
+    });
+  }
+
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#main-nav');
   function closeMenu() { nav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }
@@ -29,9 +68,10 @@
   function renderProjects() {
     const matching = projects.filter(project => activeFilter === 'all' || project.category === activeFilter);
     grid.replaceChildren();
-    matching.slice(0, shown).forEach(project => {
+    matching.slice(0, shown).forEach((project, cardPosition) => {
       const article = document.createElement('article');
-      article.className = 'project-card';
+      article.className = 'project-card card-in';
+      article.style.setProperty('--i', String(cardPosition % 6));
       const button = document.createElement('button');
       button.className = 'project-button';
       button.setAttribute('aria-label', `Ver proyecto: ${project.name}`);
