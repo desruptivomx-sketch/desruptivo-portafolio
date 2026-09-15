@@ -77,3 +77,37 @@
 .nav-contact:hover{transform:translate(-2px,-2px)}
 .case-next span:last-child{display:inline-block;transition:transform .2s ease}
 .case-next:hover span:last-child{transform:translate(4px,-4px)}
+
+/* ==========================================================================
+   EFECTOS · RONDA 2 — el lado más "desruptivo": texto que se descifra,
+   glitch de color en miniaturas, cursor propio y transición nativa entre
+   páginas. Todo desactivado en touch/pointer:coarse y en reduced-motion.
+   ========================================================================== */
+
+/* --- Cursor propio: acompaña al cursor real, no lo reemplaza --- */
+.cursor-glow{position:fixed;top:0;left:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:1.5px solid var(--red);pointer-events:none;z-index:999;opacity:0;mix-blend-mode:difference;transition:opacity .3s ease,width .25s ease,height .25s ease,margin .25s ease,background .25s ease,border-color .25s ease}
+.cursor-glow.is-active{width:54px;height:54px;margin:-27px 0 0 -27px;background:var(--paper);border-color:transparent}
+@media(max-width:900px),(pointer:coarse){.cursor-glow{display:none!important}}
+
+/* --- Texto que se "descifra" al aparecer (JS reescribe los nodos de texto,
+   la estructura de <br>/<span> no se toca) --- */
+.js .scramble{font-variant-ligatures:none}
+
+/* --- Miniaturas: glitch de color + barrido de luz al pasar el mouse --- */
+.discipline-thumb{position:relative}
+.discipline-thumb::after,.project-image::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(232,231,223,.4) 50%,transparent 58%);transform:translateX(-130%);pointer-events:none}
+.discipline-link:hover .discipline-thumb::after{transition:transform .65s ease;transform:translateX(130%)}
+.project-button:hover .project-image::after{transition:transform .65s ease;transform:translateX(130%)}
+@keyframes signalGlitch{0%,100%{filter:none}22%{filter:hue-rotate(-18deg) saturate(1.6)}46%{filter:hue-rotate(14deg) saturate(1.3)}70%{filter:hue-rotate(-8deg)}}
+.js .discipline-link:hover .discipline-thumb img,.js .project-button:hover .project-image{animation:signalGlitch .5s steps(4,end) 1}
+
+/* --- Botón del hero: tirón magnético hacia el cursor (vía JS, ver app.js) --- */
+.round-link{will-change:transform}
+
+/* --- Transición nativa entre páginas (no-op en navegadores sin soporte) --- */
+@view-transition{navigation:auto}
+
+@media(prefers-reduced-motion:reduce){
+  .cursor-glow{display:none!important}
+  .discipline-thumb::after,.project-image::after{display:none!important}
+}

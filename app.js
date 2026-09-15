@@ -39,6 +39,104 @@
     });
   }
 
+  const finePointer = matchMedia('(pointer:fine)').matches;
+  const reducedMotion = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // Texto que se "descifra": recorre los nodos de texto de un elemento
+  // (respeta <br>/<span> intactos) y va revelando cada carácter desde
+  // glifos al azar, de izquierda a derecha.
+  function scrambleReveal(el, duration = 900) {
+    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const nodes = [];
+    (function walk(node) {
+      node.childNodes.forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE && child.nodeValue.trim() !== '') {
+          nodes.push({ node: child, original: child.nodeValue, offset: 0, locks: [] });
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          walk(child);
+        }
+      });
+    })(el);
+    if (!nodes.length) return;
+    let total = 0;
+    nodes.forEach(n => { n.offset = total; total += n.original.length; });
+    nodes.forEach(n => {
+      for (let i = 0; i < n.original.length; i++) {
+        const globalIndex = n.offset + i;
+        n.locks.push((globalIndex / total) * duration * 0.6 + Math.random() * duration * 0.4);
+      }
+    });
+    const start = performance.now();
+    function frame(now) {
+      const elapsed = now - start;
+      let done = true;
+      nodes.forEach(n => {
+        let out = '';
+        for (let i = 0; i < n.original.length; i++) {
+          const ch = n.original[i];
+          if (ch === ' ') { out += ch; continue; }
+          if (elapsed >= n.locks[i]) { out += ch; }
+          else { out += glyphs[(Math.random() * glyphs.length) | 0]; done = false; }
+        }
+        n.node.nodeValue = out;
+      });
+      if (!done) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+  const scrambleEls = document.querySelectorAll('.scramble');
+  if (scrambleEls.length) {
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+      // sin animación: el texto ya está completo en el HTML, no hace falta tocarlo
+    } else {
+      const sio = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { scrambleReveal(entry.target); sio.unobserve(entry.target); }
+        });
+      }, { threshold: 0.4 });
+      scrambleEls.forEach(el => sio.observe(el));
+    }
+  }
+
+  // Cursor propio: un pequeño anillo que acompaña al cursor real (no lo
+  // reemplaza) y crece sobre elementos interactivos.
+  if (finePointer && !reducedMotion) {
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    glow.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(glow);
+    let targetX = innerWidth / 2, targetY = innerHeight / 2, currentX = targetX, currentY = targetY, cursorPlaced = false;
+    addEventListener('mousemove', event => {
+      targetX = event.clientX; targetY = event.clientY;
+      if (!cursorPlaced) { currentX = targetX; currentY = targetY; glow.style.opacity = '1'; cursorPlaced = true; }
+    }, { passive: true });
+    document.addEventListener('mouseover', event => {
+      if (event.target.closest('a,button,.filter')) glow.classList.add('is-active');
+    });
+    document.addEventListener('mouseout', event => {
+      if (event.target.closest('a,button,.filter')) glow.classList.remove('is-active');
+    });
+    (function loop() {
+      currentX += (targetX - currentX) * 0.18;
+      currentY += (targetY - currentY) * 0.18;
+      glow.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  // Botón del hero: tirón magnético hacia el cursor
+  if (finePointer && !reducedMotion) {
+    document.querySelectorAll('.round-link').forEach(btn => {
+      btn.addEventListener('mousemove', event => {
+        const rect = btn.getBoundingClientRect();
+        const x = event.clientX - rect.left - rect.width / 2;
+        const y = event.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35 + 4}px)`;
+      });
+      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+    });
+  }
+
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#main-nav');
   function closeMenu() { nav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }
