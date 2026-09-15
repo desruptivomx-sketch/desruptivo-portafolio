@@ -22,7 +22,6 @@
   <link rel="preload" href="assets/fonts/SquidBoy-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/NewBlack-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
-  <script src="projects.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -59,11 +58,13 @@
 
     <section id="proyectos" class="work-section page-pad" aria-labelledby="work-title">
       <div class="section-top mono"><span>01 / NUESTRO TRABAJO</span><span>LAS IDEAS, EN LA CALLE.</span></div>
-      <div class="work-heading"><h2 id="work-title">MENOS BLA.<br><span>MÁS ESTO.</span></h2><p>Una selección de proyectos en los que<br class="desktop-break"> pusimos la cabeza, las manos y el ojo.</p></div>
-      <div class="portfolio-tools"><div class="filters" role="group" aria-label="Filtrar proyectos"><button class="filter is-active" data-filter="all" aria-pressed="true">Todo <span>13</span></button><button class="filter" data-filter="design" aria-pressed="false">Diseño <span>8</span></button><button class="filter" data-filter="video" aria-pressed="false">Audiovisual <span>5</span></button></div><p class="portfolio-count mono" id="project-count" role="status" aria-live="polite"></p></div>
-      <div class="project-grid" id="project-grid"></div>
-      <noscript><div class="no-script"><p>Explora una selección de nuestro trabajo:</p><a href="assets/projects/mcdonalds-semaforo.jpg">McDonald's México</a><a href="assets/projects/boro-tipografia.jpg">Boro</a><a href="assets/projects/pajaro-en-piedra.jpg">Archipiélago</a><a href="assets/videos/archipielago-indispensables.mp4">Video de Archipiélago</a></div></noscript>
-      <div class="more-row"><button class="button button-outline" id="load-more" hidden>Ver más proyectos <span aria-hidden="true">+</span></button><span class="mono">DIFERENTES MARCAS. EL MISMO OJO.</span></div>
+      <div class="work-heading"><h2 id="work-title">MENOS BLA.<br><span>MÁS ESTO.</span></h2><p>Diferentes formas de hacer<br class="desktop-break"> que tu marca se note.</p></div>
+      <nav class="discipline-directory" aria-label="Explorar portafolio por disciplina">
+        <a class="discipline-link" href="diseno-grafico.html"><span class="discipline-number mono">01</span><div class="discipline-copy"><h3>Diseño gráfico</h3><p>Piezas que atrapan la mirada.</p></div><div class="discipline-thumb thumb-diseno-grafico"><img src="assets/projects/boro-tipografia.jpg" alt="Cartel tipográfico Boro" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
+        <a class="discipline-link" href="marketing.html"><span class="discipline-number mono">02</span><div class="discipline-copy"><h3>Marketing</h3><p>Contenido que pone a tu marca en conversación.</p></div><div class="discipline-thumb thumb-marketing"><img src="assets/projects/mcdonalds-semaforo.jpg" alt="Pieza de McDonald’s México" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
+        <a class="discipline-link" href="branding.html"><span class="discipline-number mono">03</span><div class="discipline-copy"><h3>Branding</h3><p>La idea y el carácter detrás de una marca.</p></div><div class="discipline-thumb thumb-branding"><img src="assets/img/og-desruptivo.jpg" alt="Logotipo de Desruptivo sobre rojo" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
+        <a class="discipline-link" href="identidad-visual.html"><span class="discipline-number mono">04</span><div class="discipline-copy"><h3>Identidad visual</h3><p>Un lenguaje propio, en cada detalle.</p></div><div class="discipline-thumb thumb-identidad-visual"><img src="assets/img/mascota-desruptivo.png" alt="Mascota original de Desruptivo" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
+      </nav>
     </section>
 
     <section class="contact-section page-pad" id="contacto" aria-labelledby="contact-title">
@@ -76,6 +77,5 @@
 
   <footer class="page-pad"><a class="brand" href="#inicio" aria-label="Volver al inicio"><img src="assets/img/logo-desruptivo.png" width="3591" height="1316" alt="Desruptivo" loading="lazy"></a><span class="mono">MÉRIDA, YUCATÁN · MÉXICO<br>© <span id="year">2026</span> DESRUPTIVO</span><div class="footer-links"><a href="https://instagram.com/desruptivo_mx" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://desruptivomx-sketch.github.io/desruptivo-web/" target="_blank" rel="noopener noreferrer">Nuestra web ↗</a><a href="#inicio">Volver arriba ↑</a></div></footer>
 
-  <dialog id="project-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="dialog-shell"><div class="dialog-top"><span class="mono" id="dialog-category"></span><button class="dialog-close" aria-label="Cerrar proyecto">Cerrar <span aria-hidden="true">×</span></button></div><div class="dialog-content"><div class="dialog-media" id="dialog-media"></div><div class="dialog-info"><span class="mono">DESRUPTIVO / PORTAFOLIO</span><h2 id="dialog-title"></h2><p id="dialog-description"></p><div id="media-navigation" class="media-navigation"><button id="previous-media" aria-label="Ver pieza anterior">←</button><span id="media-counter" class="mono" aria-live="polite"></span><button id="next-media" aria-label="Ver pieza siguiente">→</button></div><a class="text-link" id="original-media" target="_blank" rel="noopener noreferrer">Abrir pieza original ↗</a></div></div></div></dialog>
 </body>
 </html>

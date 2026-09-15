@@ -1,10 +1,14 @@
 # Desruptivo — Portafolio
 
-Landing independiente de la web institucional de Desruptivo. Diseño adaptable, selección de proyectos, filtros por disciplina, galería ampliada y reproductor de video nativo.
+Portafolio independiente de la web institucional de Desruptivo. Portada compacta con cuatro accesos y páginas de Diseño gráfico, Marketing, Branding e Identidad visual. Diseño adaptable, galerías ampliadas y reproductor de video nativo.
 
 ## Contenido
 
-- `index.html`: estructura, textos y datos de contacto.
+- `index.html`: portada compacta, accesos por disciplina y contacto.
+- `diseno-grafico.html`: ocho proyectos de diseño.
+- `marketing.html`: tres selecciones gráficas y cinco videos de comunicación comercial.
+- `branding.html`: concepto de marca Desruptivo, identificado como proyecto propio.
+- `identidad-visual.html`: logotipo, paleta, tipografías y universo gráfico de Desruptivo.
 - `styles.css`: diseño, fuentes, colores y comportamiento en móviles.
 - `projects.js`: catálogo de 13 proyectos (8 de diseño y 5 audiovisuales).
 - `app.js`: filtros, galería, menú y navegación por teclado.
@@ -26,7 +30,7 @@ Si cambias de dominio o nombre del repositorio, actualiza las direcciones absolu
 
 1. Copia las imágenes a `assets/projects/` o los videos y sus portadas a `assets/videos/`.
 2. Agrega un objeto a `window.DESRUPTIVO_PROJECTS` en `projects.js`. Usa `category: 'design'` o `category: 'video'` y una lista `media` con las piezas.
-3. Los contadores se recalculan automáticamente. La galería presenta seis proyectos al inicio y permite cargar más.
+3. Los contadores se recalculan automáticamente. Cada galería presenta seis proyectos al inicio y permite cargar más. La portada solamente muestra los cuatro accesos a las disciplinas.
 
 ## Origen de los materiales
 

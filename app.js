@@ -1,7 +1,24 @@
 (() => {
   'use strict';
-  const projects = window.DESRUPTIVO_PROJECTS || [];
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('#main-nav');
+  function closeMenu() { nav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }
+  menuToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('is-open')) {closeMenu();menuToggle.focus();} });
+  document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
+  document.querySelector('#year').textContent = new Date().getFullYear();
   const grid = document.querySelector('#project-grid');
+  if (!grid) return;
+  const allProjects = window.DESRUPTIVO_PROJECTS || [];
+  const projects = allProjects.filter(project => {
+    if (grid.dataset.collection === 'design') return project.category === 'design';
+    if (grid.dataset.collection === 'marketing') return project.category === 'video' || ['mcdonalds','boro','citron'].includes(project.id);
+    return true;
+  });
   const filters = [...document.querySelectorAll('.filter')];
   const moreButton = document.querySelector('#load-more');
   const count = document.querySelector('#project-count');
@@ -139,16 +156,5 @@
     if (event.key === 'ArrowRight') {event.preventDefault();changeMedia(1);}
     if (event.key === 'ArrowLeft') {event.preventDefault();changeMedia(-1);}
   });
-  const menuToggle = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('#main-nav');
-  function closeMenu() { nav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }
-  menuToggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
-    menuToggle.setAttribute('aria-expanded', String(open));
-  });
-  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav.classList.contains('is-open')) {closeMenu();menuToggle.focus();} });
-  document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
-  document.querySelector('#year').textContent = new Date().getFullYear();
   renderProjects();
 })();
