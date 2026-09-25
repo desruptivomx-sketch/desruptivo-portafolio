@@ -137,6 +137,130 @@
     });
   }
 
+
+  // Carrusel de disciplinas: letras que caen, texto que se escribe,
+  // celular que entra girando y salida con desenfoque.
+  const carousel = document.querySelector('.dc');
+  if (carousel) {
+    const slides = [...carousel.querySelectorAll('.dc-slide')];
+    const tabs = [...carousel.querySelectorAll('.dc-tab')];
+    const DURATION = 7000;
+    let current = -1, typing = null, started = false, visible = false, hovering = false;
+    carousel.style.setProperty('--dc-time', DURATION + 'ms');
+
+    slides.forEach(slide => {
+      const title = slide.querySelector('.dc-title');
+      title.setAttribute('aria-label', title.textContent.replace(/\s+/g, ' ').trim());
+      let n = 0;
+      [...title.childNodes].forEach(node => {
+        if (node.nodeType !== Node.TEXT_NODE) return;
+        const frag = document.createDocumentFragment();
+        node.nodeValue.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.append(' '); return; }
+          const word = document.createElement('span');
+          word.className = 'dc-word'; word.setAttribute('aria-hidden', 'true');
+          [...part].forEach(ch => {
+            const s = document.createElement('span');
+            s.className = 'dc-ch'; s.textContent = ch;
+            s.style.setProperty('--i', n++);
+            s.style.setProperty('--r', ((Math.random() * 50) - 25).toFixed(1) + 'deg');
+            word.append(s);
+          });
+          frag.append(word);
+        });
+        node.replaceWith(frag);
+      });
+      slide.style.setProperty('--dc-letters', n);
+      slide.querySelectorAll('.dc-collage img').forEach((img, k) => img.style.setProperty('--k', k));
+      const sub = slide.querySelector('.dc-sub');
+      sub.dataset.full = sub.textContent;
+    });
+
+    function typeSub(sub) {
+      clearInterval(typing);
+      const full = sub.dataset.full;
+      if (reducedMotion) { sub.textContent = full; return; }
+      let i = 0;
+      const render = () => { sub.innerHTML = ''; const a = document.createElement('span'); a.textContent = full.slice(0, i); const b = document.createElement('span'); b.className = 'dc-ghost'; b.textContent = full.slice(i); sub.append(a, b); };
+      render();
+      setTimeout(() => { typing = setInterval(() => { i += 2; render(); if (i >= full.length) clearInterval(typing); }, 22); }, 650);
+    }
+    function setVideo(slide, play) {
+      const video = slide.querySelector('.dc-video');
+      if (!video) return;
+      if (play && !reducedMotion) { if (!video.src) video.src = video.dataset.src; video.play().catch(() => {}); }
+      else video.pause();
+    }
+    function restartBar() {
+      carousel.classList.remove('is-auto');
+      void carousel.offsetWidth;
+      if (!reducedMotion) carousel.classList.add('is-auto');
+    }
+    function go(index, dir) {
+      index = (index + slides.length) % slides.length;
+      if (index === current) return;
+      const back = dir < 0;
+      const prev = slides[current];
+      if (prev) {
+        prev.classList.remove('is-active');
+        prev.classList.toggle('is-back', back);
+        prev.classList.add('is-leaving');
+        setVideo(prev, false);
+        setTimeout(() => prev.classList.remove('is-leaving'), 600);
+      }
+      const next = slides[index];
+      next.classList.remove('is-leaving');
+      next.classList.toggle('is-back', back);
+      void next.offsetWidth;
+      next.classList.add('is-active');
+      typeSub(next.querySelector('.dc-sub'));
+      setVideo(next, true);
+      tabs.forEach((tab, t) => { const on = t === index; tab.setAttribute('aria-selected', String(on)); tab.tabIndex = on ? 0 : -1; });
+      const tabsEl = tabs[index].parentElement;
+      tabsEl.scrollTo({ left: tabs[index].offsetLeft - tabsEl.offsetLeft - 10, behavior: reducedMotion ? 'auto' : 'smooth' });
+      current = index;
+      restartBar();
+    }
+    function updatePause() { carousel.classList.toggle('is-paused', hovering || !visible || document.hidden); }
+
+    carousel.addEventListener('animationend', event => {
+      if (event.animationName === 'dcFill') go(current + 1, 1);
+    });
+    tabs.forEach((tab, t) => {
+      tab.addEventListener('click', () => go(t, t < current ? -1 : 1));
+      tab.addEventListener('keydown', event => {
+        const d = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        event.preventDefault(); go(current + d, d); tabs[current].focus();
+      });
+    });
+    carousel.querySelectorAll('.dc-arrow').forEach(btn => btn.addEventListener('click', () => { const d = Number(btn.dataset.dir); go(current + d, d); }));
+    carousel.addEventListener('mouseenter', () => { hovering = true; updatePause(); });
+    carousel.addEventListener('mouseleave', () => { hovering = false; updatePause(); });
+    carousel.addEventListener('focusin', () => { hovering = true; updatePause(); });
+    carousel.addEventListener('focusout', event => { if (!carousel.contains(event.relatedTarget)) { hovering = false; updatePause(); } });
+    document.addEventListener('visibilitychange', updatePause);
+    let touchX = null;
+    carousel.addEventListener('touchstart', event => { touchX = event.touches[0].clientX; }, { passive: true });
+    carousel.addEventListener('touchend', event => {
+      if (touchX === null) return;
+      const dx = event.changedTouches[0].clientX - touchX; touchX = null;
+      if (Math.abs(dx) > 45) { const d = dx < 0 ? 1 : -1; go(current + d, d); }
+    }, { passive: true });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          visible = entry.isIntersecting;
+          if (visible && !started) { started = true; go(0, 1); }
+          if (current >= 0) setVideo(slides[current], visible);
+          updatePause();
+        });
+      }, { threshold: 0.35 }).observe(carousel);
+    } else { visible = true; go(0, 1); }
+  }
+
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('#main-nav');
   function closeMenu() { nav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }

@@ -112,3 +112,79 @@
   .discipline-thumb::after,.project-image::after{display:none!important}
 }
 .empty-state{border:1px dashed var(--line);padding:70px 30px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}.empty-state .mono{color:var(--red);font-size:11px}.empty-state p{font-size:18px}
+
+/* ===== Carrusel de disciplinas ===== */
+.dc{--cell:36px;position:relative;border:1px solid var(--ink);background-color:#e2e1d8;background-image:linear-gradient(rgba(39,39,42,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(39,39,42,.13) 1px,transparent 1px);background-size:var(--cell) var(--cell);overflow:hidden}
+.dc-stage{display:grid;min-height:clamp(470px,52vw,640px)}
+.dc-slide{grid-area:1/1;display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,70px);align-items:center;padding:clamp(28px,4vw,64px) clamp(24px,5vw,80px)}
+.dc-copy{max-width:640px}
+.dc-kicker{color:var(--red);font-size:12px;margin-bottom:18px}
+.dc-title{font:700 clamp(52px,7.4vw,124px)/.92 Squid,Impact,sans-serif;text-transform:uppercase;letter-spacing:-.01em;color:var(--ink)}
+.dc-word{display:inline-block;white-space:nowrap}
+.dc-ch{display:inline-block;transform-origin:50% 100%}
+.dc-sub{font-size:clamp(15px,1.3vw,18px);line-height:1.5;max-width:420px;margin-top:24px;text-transform:uppercase;letter-spacing:.02em}
+.dc-sub .dc-ghost{visibility:hidden}
+.dc-cta{display:inline-flex;gap:10px;align-items:center;margin-top:30px;padding:13px 22px;background:var(--ink);color:var(--paper);border-radius:40px;font-size:15px;transition:background .2s,transform .2s}
+.dc-cta:hover{background:var(--red);transform:translateY(-2px)}
+.dc-phone{justify-self:center;position:relative;display:block;width:clamp(190px,19vw,270px);aspect-ratio:9/19;border-radius:34px;background:#1d1d20;padding:9px;box-shadow:0 30px 50px -22px rgba(39,39,42,.55),inset 0 0 0 2px #45454b;transform:rotate(-4deg)}
+.dc-notch{position:absolute;z-index:3;top:16px;left:50%;width:34%;height:18px;border-radius:12px;background:#1d1d20;transform:translateX(-50%)}
+.dc-screen{position:relative;display:flex;flex-direction:column;height:100%;border-radius:26px;overflow:hidden;padding:44px 14px 14px}
+.dc-screen-title{position:relative;z-index:2;font:700 clamp(26px,2.6vw,38px)/.92 Squid,Impact,sans-serif;text-transform:uppercase;text-align:center}
+.dc-marketing .dc-screen{background:var(--red);color:var(--ink)}
+.dc-collage{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.dc-collage img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.dc-multimedia .dc-screen{background:var(--ink);color:var(--paper);justify-content:flex-end}
+.dc-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dc-multimedia .dc-screen-title{text-shadow:0 2px 14px rgba(0,0,0,.5);padding-bottom:18px}
+.dc-ingenieria .dc-screen{background:var(--ink);color:#8fb258;justify-content:flex-end}
+.dc-blueprint{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:rgba(143,178,88,.28);stroke-width:1}
+.dc-bp-strong{stroke:#8fb258;stroke-width:2;stroke-dasharray:700;stroke-dashoffset:0}
+.dc-mascot{position:absolute;z-index:1;width:62%;left:19%;top:22%;transform:rotate(-8deg)}
+.dc-ingenieria .dc-screen-title{padding-bottom:10px}
+.dc-controls{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--ink);background:var(--paper);padding:0 clamp(16px,3vw,40px)}
+.dc-tabs{display:flex;gap:clamp(14px,3vw,44px);overflow-x:auto}
+.dc-tab{position:relative;display:flex;gap:8px;align-items:baseline;padding:20px 0 22px;font-size:clamp(15px,1.4vw,19px);white-space:nowrap;color:#77776f;background:none;border:0;cursor:pointer}
+.dc-tab .mono{font-size:11px}
+.dc-tab[aria-selected="true"]{color:var(--ink)}
+.dc-tab[aria-selected="true"] .mono{color:var(--red)}
+.dc-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--line);opacity:0}
+.dc-bar i{display:block;height:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
+.dc-tab[aria-selected="true"] .dc-bar{opacity:1}
+.dc-tab[aria-selected="true"] .dc-bar i{transform:scaleX(1)}
+.dc-arrows{display:flex;gap:8px;flex-shrink:0}
+.dc-arrow{width:46px;height:46px;border-radius:50%;border:1px solid var(--ink);background:none;font:20px Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+.dc-arrow:hover{background:var(--ink);color:var(--paper)}
+.dc-tab:focus-visible,.dc-arrow:focus-visible,.dc-cta:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* Estados animados (solo con JS) */
+.js .dc-slide{visibility:hidden;opacity:0;pointer-events:none}
+.js .dc-slide.is-active,.js .dc-slide.is-leaving{visibility:visible;opacity:1}
+.js .dc-slide.is-active{pointer-events:auto}
+.js .dc.is-auto .dc-tab[aria-selected="true"] .dc-bar i{animation:dcFill var(--dc-time,7s) linear forwards}
+.js .dc.is-paused .dc-tab .dc-bar i{animation-play-state:paused}
+.js .dc-slide.is-active .dc-ch{animation:dcDrop .75s cubic-bezier(.25,1.5,.45,1) both;animation-delay:calc(var(--i) * 34ms + 180ms)}
+.js .dc-slide.is-active .dc-kicker{animation:dcFade .5s ease both .05s}
+.js .dc-slide.is-active .dc-cta{animation:dcRise .6s cubic-bezier(.2,1.2,.4,1) both calc(var(--dc-letters,20) * 34ms + 700ms)}
+.js .dc-slide.is-active .dc-phone{animation:dcPhoneIn 1s cubic-bezier(.2,1.25,.35,1) both .1s}
+.js .dc-slide.is-active .dc-screen-title{animation:dcPop .6s cubic-bezier(.25,1.6,.45,1) both .7s}
+.js .dc-slide.is-active .dc-collage img{animation:dcPop .55s cubic-bezier(.25,1.6,.45,1) both;animation-delay:calc(var(--k) * 140ms + 950ms)}
+.js .dc-slide.is-active .dc-mascot{animation:dcBob 3s ease-in-out infinite 1.4s,dcPop .6s cubic-bezier(.25,1.6,.45,1) both .9s}
+.js .dc-slide.is-active .dc-bp-strong{animation:dcDraw 1.6s ease both .5s}
+.js .dc-slide.is-leaving .dc-copy{animation:dcBlurOut .5s ease forwards}
+.js .dc-slide.is-leaving .dc-phone{animation:dcPhoneOut .55s cubic-bezier(.5,0,.75,0) forwards}
+.js .dc-slide.is-back.is-active .dc-phone{animation-name:dcPhoneInBack}
+.js .dc-slide.is-back.is-leaving .dc-phone{animation-name:dcPhoneOutBack}
+@keyframes dcDrop{0%{opacity:0;transform:translate(.35em,1.1em) rotate(var(--r)) scale(.25)}55%{opacity:1;transform:translateY(-.08em) rotate(calc(var(--r) * -.15)) scale(1.06)}100%{opacity:1;transform:none}}
+@keyframes dcFade{from{opacity:0}to{opacity:1}}
+@keyframes dcRise{from{opacity:0;transform:translateY(18px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes dcPop{0%{opacity:0;transform:scale(.3) rotate(-6deg)}100%{opacity:1;transform:none}}
+@keyframes dcPhoneIn{0%{opacity:0;transform:translate(70%,12%) rotate(16deg)}60%{opacity:1;transform:translate(-3%,-2%) rotate(-7deg)}100%{transform:rotate(-4deg)}}
+@keyframes dcPhoneInBack{0%{opacity:0;transform:translate(-70%,12%) rotate(-22deg)}60%{opacity:1;transform:translate(3%,-2%) rotate(-1deg)}100%{transform:rotate(-4deg)}}
+@keyframes dcPhoneOut{to{opacity:0;transform:translate(-80%,6%) rotate(-18deg);filter:blur(4px)}}
+@keyframes dcPhoneOutBack{to{opacity:0;transform:translate(80%,6%) rotate(12deg);filter:blur(4px)}}
+@keyframes dcBlurOut{to{opacity:0;filter:blur(12px);transform:translateY(-12px)}}
+@keyframes dcFill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dcBob{0%,100%{transform:rotate(-8deg) translateY(0)}50%{transform:rotate(-4deg) translateY(-7px)}}
+@keyframes dcDraw{from{stroke-dashoffset:700}to{stroke-dashoffset:0}}
+@media(max-width:760px){.dc{--cell:28px}.dc-slide{grid-template-columns:1fr;gap:26px;align-content:start;padding:30px 22px 34px}.dc-phone{order:-1;width:150px;border-radius:26px;padding:7px}.dc-screen{border-radius:20px;padding:34px 10px 10px}.dc-notch{top:12px;height:13px}.dc-screen-title{font-size:23px}.dc-title{font-size:clamp(34px,11.2vw,60px)}.dc-sub{margin-top:16px}.dc-cta{margin-top:22px}.dc-arrows{display:none}.dc-controls{padding:0 18px}.dc-tabs{gap:16px}.dc-tab{font-size:14px;padding:18px 0 20px}}
+@media(prefers-reduced-motion:reduce){.js .dc-slide *,.js .dc-slide{animation:none!important}.js .dc-slide.is-leaving{visibility:hidden}}

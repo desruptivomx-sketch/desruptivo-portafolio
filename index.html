@@ -59,11 +59,30 @@
     <section id="proyectos" class="work-section page-pad" aria-labelledby="work-title">
       <div class="section-top mono reveal"><span>01 / NUESTRO TRABAJO</span><span>LAS IDEAS, EN LA CALLE.</span></div>
       <div class="work-heading reveal"><h2 id="work-title" class="scramble">MENOS BLA.<br><span>MÁS ESTO.</span></h2><p>Diferentes formas de hacer<br class="desktop-break"> que tu marca se note.</p></div>
-      <nav class="discipline-directory" aria-label="Explorar portafolio por disciplina">
-        <a class="discipline-link reveal" href="marketing.html"><span class="discipline-number mono">01</span><div class="discipline-copy"><h3>Marketing</h3><p>Contenido que pone a tu marca en conversación.</p></div><div class="discipline-thumb thumb-marketing"><img src="assets/projects/mcdonalds-semaforo.jpg" alt="Pieza de McDonald’s México" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
-        <a class="discipline-link reveal" href="ingenieria.html"><span class="discipline-number mono">02</span><div class="discipline-copy"><h3>Ingeniería</h3><p>Soluciones que hacen que las ideas funcionen.</p></div><div class="discipline-thumb thumb-ingenieria"><img src="assets/img/mascota-desruptivo.png" alt="Mascota original de Desruptivo" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
-        <a class="discipline-link reveal" href="multimedia.html"><span class="discipline-number mono">03</span><div class="discipline-copy"><h3>Multimedia</h3><p>Video y movimiento para contar tu historia.</p></div><div class="discipline-thumb thumb-multimedia"><img src="assets/videos/mitica-promocional-poster.jpg" alt="Fotograma de video promocional" width="160" height="100" loading="lazy"></div><span class="discipline-arrow" aria-hidden="true">↗</span></a>
-      </nav>
+      <div class="dc" id="disciplinas" aria-roledescription="carrusel" aria-label="Disciplinas de Desruptivo">
+        <div class="dc-stage" aria-live="off">
+          <article class="dc-slide dc-marketing" id="dc-slide-0" role="group" aria-roledescription="diapositiva" aria-label="1 de 3: Marketing">
+            <div class="dc-copy"><p class="dc-kicker mono">01 / MARKETING</p><h3 class="dc-title">Marketing<br>que se comparte</h3><p class="dc-sub">Contenido para redes, producto y campañas que ponen a tu marca en conversación.</p><a class="dc-cta" href="marketing.html">Ver marketing <span aria-hidden="true">↗</span></a></div>
+            <a class="dc-phone" href="marketing.html" tabindex="-1" aria-hidden="true"><span class="dc-notch"></span><span class="dc-screen"><span class="dc-screen-title">Hecho para<br>robar miradas</span><span class="dc-collage"><img src="assets/projects/mcdonalds-semaforo.jpg" alt="" loading="lazy"><img src="assets/projects/boro-tipografia.jpg" alt="" loading="lazy"><img src="assets/projects/cosmicos-goat-milk.jpg" alt="" loading="lazy"><img src="assets/projects/bajel-chef-story.jpg" alt="" loading="lazy"></span></span></a>
+          </article>
+          <article class="dc-slide dc-multimedia" id="dc-slide-1" role="group" aria-roledescription="diapositiva" aria-label="2 de 3: Multimedia">
+            <div class="dc-copy"><p class="dc-kicker mono">02 / MULTIMEDIA</p><h3 class="dc-title">Historias<br>en movimiento</h3><p class="dc-sub">Video, animación y producción audiovisual pensados para que nadie deslice de largo.</p><a class="dc-cta" href="multimedia.html">Ver multimedia <span aria-hidden="true">↗</span></a></div>
+            <a class="dc-phone" href="multimedia.html" tabindex="-1" aria-hidden="true"><span class="dc-notch"></span><span class="dc-screen"><video class="dc-video" muted loop playsinline preload="none" poster="assets/videos/mitica-promocional-poster.jpg" data-src="assets/videos/mitica-promocional.mp4"></video><span class="dc-screen-title">Dale<br>play</span></span></a>
+          </article>
+          <article class="dc-slide dc-ingenieria" id="dc-slide-2" role="group" aria-roledescription="diapositiva" aria-label="3 de 3: Ingeniería">
+            <div class="dc-copy"><p class="dc-kicker mono">03 / INGENIERÍA</p><h3 class="dc-title">Ideas<br>que funcionan</h3><p class="dc-sub">Soluciones técnicas que llevan cada idea del papel al mundo real.</p><a class="dc-cta" href="ingenieria.html">Ver ingeniería <span aria-hidden="true">↗</span></a></div>
+            <a class="dc-phone" href="ingenieria.html" tabindex="-1" aria-hidden="true"><span class="dc-notch"></span><span class="dc-screen"><svg class="dc-blueprint" viewBox="0 0 200 400" preserveAspectRatio="none"><path d="M20 60H180M20 120H180M20 180H180M20 240H180M20 300H180M50 30V370M100 30V370M150 30V370"/><path class="dc-bp-strong" d="M40 90H160V210H40Z M40 150H160 M100 90V210"/><circle class="dc-bp-strong" cx="100" cy="290" r="38"/></svg><img class="dc-mascot" src="assets/img/mascota-desruptivo.png" alt="" loading="lazy"><span class="dc-screen-title">Del plano<br>a la realidad</span></span></a>
+          </article>
+        </div>
+        <div class="dc-controls">
+          <div class="dc-tabs" role="tablist" aria-label="Elegir disciplina">
+            <button class="dc-tab" role="tab" aria-controls="dc-slide-0" aria-selected="true"><span class="mono">01</span> Marketing<span class="dc-bar"><i></i></span></button>
+            <button class="dc-tab" role="tab" aria-controls="dc-slide-1" aria-selected="false" tabindex="-1"><span class="mono">02</span> Multimedia<span class="dc-bar"><i></i></span></button>
+            <button class="dc-tab" role="tab" aria-controls="dc-slide-2" aria-selected="false" tabindex="-1"><span class="mono">03</span> Ingeniería<span class="dc-bar"><i></i></span></button>
+          </div>
+          <div class="dc-arrows"><button class="dc-arrow" data-dir="-1" aria-label="Disciplina anterior">←</button><button class="dc-arrow" data-dir="1" aria-label="Disciplina siguiente">→</button></div>
+        </div>
+      </div>
     </section>
 
     <section class="contact-section page-pad" id="contacto" aria-labelledby="contact-title">

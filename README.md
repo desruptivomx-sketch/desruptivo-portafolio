@@ -4,7 +4,7 @@ Portafolio independiente de la web institucional de Desruptivo. Portada compacta
 
 ## Contenido
 
-- `index.html`: portada compacta, accesos por disciplina y contacto.
+- `index.html`: portada compacta, carrusel animado de disciplinas (Marketing, Multimedia, Ingeniería) y contacto.
 - `marketing.html`: ocho piezas gráficas de comunicación comercial.
 - `ingenieria.html`: sección de ingeniería (próximamente).
 - `multimedia.html`: cinco videos de producción audiovisual.
