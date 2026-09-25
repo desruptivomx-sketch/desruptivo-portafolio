@@ -152,8 +152,8 @@
   if (!grid) return;
   const allProjects = window.DESRUPTIVO_PROJECTS || [];
   const projects = allProjects.filter(project => {
-    if (grid.dataset.collection === 'design') return project.category === 'design';
-    if (grid.dataset.collection === 'marketing') return project.category === 'video' || ['mcdonalds','boro','citron'].includes(project.id);
+    if (grid.dataset.collection === 'marketing') return project.category === 'design';
+    if (grid.dataset.collection === 'multimedia') return project.category === 'video';
     return true;
   });
   const filters = [...document.querySelectorAll('.filter')];

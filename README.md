@@ -1,14 +1,13 @@
 # Desruptivo — Portafolio
 
-Portafolio independiente de la web institucional de Desruptivo. Portada compacta con cuatro accesos y páginas de Diseño gráfico, Marketing, Branding e Identidad visual. Diseño adaptable, galerías ampliadas y reproductor de video nativo.
+Portafolio independiente de la web institucional de Desruptivo. Portada compacta con tres accesos y páginas de Marketing, Ingeniería y Multimedia. Diseño adaptable, galerías ampliadas y reproductor de video nativo.
 
 ## Contenido
 
 - `index.html`: portada compacta, accesos por disciplina y contacto.
-- `diseno-grafico.html`: ocho proyectos de diseño.
-- `marketing.html`: tres selecciones gráficas y cinco videos de comunicación comercial.
-- `branding.html`: concepto de marca Desruptivo, identificado como proyecto propio.
-- `identidad-visual.html`: logotipo, paleta, tipografías y universo gráfico de Desruptivo.
+- `marketing.html`: ocho piezas gráficas de comunicación comercial.
+- `ingenieria.html`: sección de ingeniería (próximamente).
+- `multimedia.html`: cinco videos de producción audiovisual.
 - `styles.css`: diseño, fuentes, colores y comportamiento en móviles.
 - `projects.js`: catálogo de 13 proyectos (8 de diseño y 5 audiovisuales).
 - `app.js`: filtros, galería, menú y navegación por teclado.
