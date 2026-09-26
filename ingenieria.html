@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
   <script src="engine.js" defer></script>
+  <script src="game.js" defer></script>
 </head>
 <body class="category-page">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -55,7 +56,20 @@
         <p class="eng-hint mono">MUEVE EL CURSOR · HAZ CLIC PARA LANZAR UNA ONDA · TECLAS 1–6</p>
       </div>
     </section>
-    <div class="eng-caption page-pad reveal"><p><strong>Todo lo que acabas de mover está programado desde cero.</strong> Sin librerías ni plantillas: miles de partículas con física de resortes, calculadas cuadro por cuadro y ajustadas al dispositivo en que lo ves. Es una muestra pequeña de cómo construimos.</p><ul class="eng-facts mono"><li><b>0</b>LIBRERÍAS</li><li><b data-count-fact>5,600</b>PARTÍCULAS EN TU PANTALLA</li><li><b>60</b>FPS OBJETIVO</li></ul></div>
+    <div class="eng-caption page-pad reveal"><p><strong>Todo lo que acabas de mover está programado desde cero.</strong> Sin librerías ni plantillas: miles de partículas con física de resortes, calculadas cuadro por cuadro y ajustadas al dispositivo en que lo ves. Es una muestra pequeña de cómo construimos.</p><ul class="eng-facts mono"><li><b>0</b>LIBRERÍAS</li><li><b data-count-fact>5,600</b>PARTÍCULAS EN TU PANTALLA</li><li><b>60</b>FPS OBJETIVO</li></ul><a class="eng-play mono" href="#juego">¿Y SI JUGAMOS? <span aria-hidden="true">↓</span></a></div>
+    <section class="bk page-pad" id="juego" aria-labelledby="bk-title">
+      <div class="bk-head reveal"><span class="svc-num mono">BONUS / JUGABLE</span><h2 id="bk-title" class="scramble">ROMPE LOS<br>PROBLEMAS.</h2><p>Un videojuego programado desde cero. Cada ladrillo es un problema que resolvemos en la vida real: rómpelos todos antes de que se te caiga el servidor.</p><ul class="bk-legend mono"><li><span class="bk-pill bk-pill-green">IA</span>Multibola</li><li><span class="bk-pill">API</span>Barra ancha</li><li><span class="bk-pill bk-pill-red">DEPLOY</span>+1 vida</li><li><span class="bk-pill bk-pill-ink">LEGACY</span>Aguanta 2 golpes</li></ul><p class="bk-keys mono">MOUSE, DEDO O ← → · ESPACIO LANZA · P PAUSA</p></div>
+      <div class="bk-frame" data-state="menu">
+        <div class="bk-stage"><canvas class="bk-canvas" tabindex="0" aria-label="Juego Desruptivo Breakout. Usa las flechas para mover la barra y espacio para lanzar."></canvas>
+          <div class="bk-screen bk-screen-menu"><span class="mono">DESRUPTIVO ARCADE</span><p class="bk-title">BREAK<br>OUT.</p><p>Rompe los problemas de tu negocio.</p><button class="bk-btn" data-action="start">Jugar <span aria-hidden="true">▶</span></button><span class="mono bk-best">RÉCORD <b data-best-final>0</b></span></div>
+          <div class="bk-screen bk-screen-paused"><p class="bk-title">PAUSA.</p><button class="bk-btn" data-action="resume">Continuar <span aria-hidden="true">▶</span></button><button class="bk-link" data-action="restart">Reiniciar</button></div>
+          <div class="bk-screen bk-screen-clear"><span class="mono">PROBLEMAS RESUELTOS</span><p class="bk-title">NIVEL<br>SUPERADO.</p></div>
+          <div class="bk-screen bk-screen-over"><span class="mono">SE CAYÓ EL SERVIDOR</span><p class="bk-title">GAME<br>OVER.</p><p>Puntos: <b data-score-final>0</b> · Récord: <b data-best-final>0</b></p><button class="bk-btn" data-action="restart">Otra vez <span aria-hidden="true">↻</span></button></div>
+          <div class="bk-screen bk-screen-win"><span class="mono">0 PROBLEMAS PENDIENTES</span><p class="bk-title">LO<br>LOGRASTE.</p><p>Puntos: <b data-score-final>0</b> · Récord: <b data-best-final>0</b></p><p>¿Tu negocio tiene problemas así de reales? Esos también los rompemos.</p><div class="bk-row"><a class="bk-btn" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20jugu%C3%A9%20su%20Breakout%20y%20tengo%20un%20problema%20real%20que%20resolver." target="_blank" rel="noopener noreferrer">Hablemos <span aria-hidden="true">↗</span></a><button class="bk-link" data-action="restart">Jugar otra vez</button></div></div>
+        </div>
+        <div class="bk-bar mono"><span>BREAKOUT · CANVAS 2D · WEB AUDIO · 0 LIBRERÍAS</span><div><button class="bk-mini" data-action="pause">Pausa</button><button class="bk-mini" data-action="mute" aria-pressed="false">Sonido: sí</button></div></div>
+      </div>
+    </section>
     <section class="svc page-pad" id="apps" aria-labelledby="apps-title">
       <div class="svc-head reveal"><span class="svc-num mono">01 / SERVICIO</span><h2 id="apps-title" class="scramble">DESARROLLO<br>DE APPS.</h2><p class="svc-lead">Apps y plataformas construidas para durar: código sólido, rendimiento real y sin promesas vacías.</p><h3 class="svc-inc mono">QUÉ INCLUYE</h3><ul class="svc-list"><li>Apps móviles para iOS y Android</li><li>Aplicaciones web a la medida</li><li>Sitios web y landing pages</li><li>Tiendas en línea</li><li>Mantenimiento y soporte</li></ul></div><div class="svc-work"><div class="portfolio-tools"><span class="mono">DESARROLLO DE APPS / PRÓXIMAMENTE</span></div><div class="svc-slots"><div class="svc-slot reveal"><span class="svc-slot-plus" aria-hidden="true">+</span><span class="mono">ESPACIO PARA APP 01</span></div><div class="svc-slot reveal"><span class="svc-slot-plus" aria-hidden="true">+</span><span class="mono">ESPACIO PARA APP 02</span></div><div class="svc-slot reveal"><span class="svc-slot-plus" aria-hidden="true">+</span><span class="mono">ESPACIO PARA APP 03</span></div></div></div>
     </section>
