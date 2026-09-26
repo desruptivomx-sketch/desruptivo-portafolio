@@ -358,13 +358,13 @@
       const r = track.getBoundingClientRect(), vh = window.innerHeight;
       const small = window.innerWidth < 760;
       // Empieza cuando la pantalla asoma a media vista y termina ya fija, dejando un tramo plano para jugar.
-      const p = Math.max(0, Math.min(1, (vh * 0.6 - r.top) / (vh * (small ? 1.05 : 1.2))));
+      const p = Math.max(0, Math.min(1, (vh * 0.95 - r.top) / (vh * (small ? 1.25 : 1.35))));
       const e = 1 - Math.pow(1 - p, 2.2);
       if (p >= 1) { device.style.transform = 'none'; device.classList.add('is-flat'); }
       else {
         device.classList.remove('is-flat');
-        const rx = (small ? 38 : 48) * (1 - e), s = (small ? 0.84 : 0.72) + (1 - (small ? 0.84 : 0.72)) * e;
-        const ty = (1 - e) * (small ? 40 : 90), rz = (1 - e) * -4;
+        const rx = (small ? 22 : 30) * (1 - e), s0 = small ? 0.88 : 0.8, s = s0 + (1 - s0) * e;
+        const ty = (1 - e) * (small ? 20 : 40), rz = (1 - e) * -3;
         device.style.transform = `translateY(${ty}px) rotateX(${rx}deg) rotateZ(${rz}deg) scale(${s})`;
       }
       device.style.setProperty('--glare', (e * 100).toFixed(1) + '%');

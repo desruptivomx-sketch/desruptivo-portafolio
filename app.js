@@ -189,7 +189,9 @@
     function setVideo(slide, play) {
       const video = slide.querySelector('.dc-video');
       if (!video) return;
-      if (play && !reducedMotion) { if (!video.src) video.src = video.dataset.src; video.play().catch(() => {}); }
+      const net = navigator.connection || {};
+      const lightMode = net.saveData || /(^|-)2g|3g/.test(net.effectiveType || '');
+      if (play && !reducedMotion && !lightMode) { if (!video.src) video.src = video.dataset.src; video.play().catch(() => {}); }
       else video.pause();
     }
     function restartBar() {
@@ -302,6 +304,11 @@
       frame.className = `project-image ${project.tone}`;
       const img = new Image();
       img.src = project.cover;
+      if (project.cover.startsWith('assets/projects/')) {
+        img.srcset = `${project.cover.replace('assets/projects/', 'assets/projects/480/')} 480w, ${project.cover} 900w`;
+        img.sizes = '(max-width:760px) 50vw, 30vw';
+      }
+      img.decoding = 'async';
       img.alt = project.media[0].alt;
       img.loading = 'lazy';
       img.decoding = 'async';
