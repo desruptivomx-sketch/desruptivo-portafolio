@@ -54,16 +54,17 @@
 
   /* ---------- Tamaño y escala ---------- */
   function measure() {
-    const rect = frame.querySelector('.bk-stage').getBoundingClientRect();
-    const nowTall = rect.width < 640;
+    const stage = frame.querySelector('.bk-stage');
+    // clientWidth ignora las transformaciones 3D del contenedor.
+    const nowTall = stage.clientWidth < 640;
     if (nowTall !== tall) {
       tall = nowTall; W = tall ? 540 : 960; H = tall ? 760 : 600;
       frame.classList.toggle('is-tall', tall);
       if (paddle) { buildLevel(); resetServe(); }
     }
-    const r2 = frame.querySelector('.bk-stage').getBoundingClientRect();
-    scale = r2.width / W; dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.round(r2.width * dpr); canvas.height = Math.round(r2.width * (H / W) * dpr);
+    const cw = stage.clientWidth;
+    scale = cw / W; dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(cw * dpr); canvas.height = Math.round(cw * (H / W) * dpr);
     ctx.setTransform(scale * dpr, 0, 0, scale * dpr, 0, 0);
     if (state !== 'play') draw();
   }
@@ -316,7 +317,7 @@
   }
 
   /* ---------- Controles ---------- */
-  const toLogical = e => { const r = canvas.getBoundingClientRect(); return (e.clientX - r.left) / scale; };
+  const toLogical = e => { const r = canvas.getBoundingClientRect(); return (e.clientX - r.left) * W / r.width; };
   canvas.addEventListener('pointermove', e => { if (state === 'play' || state === 'serve') pointerX = toLogical(e); });
   canvas.addEventListener('pointerdown', e => { pointerX = toLogical(e); if (state === 'serve') launch(); });
   canvas.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') pointerX = null; });
@@ -346,6 +347,34 @@
   }), { threshold: 0.2 }).observe(frame);
   document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
   let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(measure, 150); });
+
+  /* ---------- Entrada 3D ligada al scroll ---------- */
+  const track = document.querySelector('.ux3d-track');
+  const device = document.querySelector('.ux3d-device');
+  if (track && device && !reduced) {
+    let ticking = false;
+    const apply = () => {
+      ticking = false;
+      const r = track.getBoundingClientRect(), vh = window.innerHeight;
+      const small = window.innerWidth < 760;
+      // Empieza cuando la pantalla asoma a media vista y termina ya fija, dejando un tramo plano para jugar.
+      const p = Math.max(0, Math.min(1, (vh * 0.6 - r.top) / (vh * (small ? 1.05 : 1.2))));
+      const e = 1 - Math.pow(1 - p, 2.2);
+      if (p >= 1) { device.style.transform = 'none'; device.classList.add('is-flat'); }
+      else {
+        device.classList.remove('is-flat');
+        const rx = (small ? 38 : 48) * (1 - e), s = (small ? 0.84 : 0.72) + (1 - (small ? 0.84 : 0.72)) * e;
+        const ty = (1 - e) * (small ? 40 : 90), rz = (1 - e) * -4;
+        device.style.transform = `translateY(${ty}px) rotateX(${rx}deg) rotateZ(${rz}deg) scale(${s})`;
+      }
+      device.style.setProperty('--glare', (e * 100).toFixed(1) + '%');
+      device.style.setProperty('--shadow', (1 - e).toFixed(3));
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(apply); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    apply();
+  }
 
   const boot = () => { measure(); setState('menu'); };
   (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(boot, boot);

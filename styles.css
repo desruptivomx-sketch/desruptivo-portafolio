@@ -346,3 +346,21 @@
 .bk-btn:focus-visible,.bk-link:focus-visible,.bk-mini:focus-visible,.bk-canvas:focus-visible{outline:2px solid #8fb258;outline-offset:3px}
 @media(max-width:900px){.bk{grid-template-columns:1fr;padding-top:50px;padding-bottom:50px}.bk-head{position:static}}
 @media(max-width:760px){.bk-bar>span{display:none}.bk-bar{justify-content:flex-end}.bk-title{font-size:clamp(52px,17vw,80px)!important}.bk-keys{display:none}}
+
+/* ===== UX/UI: juego que aparece en 3D ===== */
+.ux3d{border-bottom:1px solid var(--ink);background:#e2e1d8;background-image:linear-gradient(rgba(39,39,42,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(39,39,42,.1) 1px,transparent 1px);background-size:36px 36px;scroll-margin-top:90px}
+.ux3d-intro{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end;padding-top:70px}
+.ux3d-title{font:700 clamp(46px,6vw,104px)/.95 Squid,Impact,sans-serif;margin:16px 0 18px}
+.ux3d-lead{font-size:18px;line-height:1.5;max-width:520px}
+.ux3d-legend .bk-legend{margin-top:0}
+.ux3d-track{position:relative;height:190vh;margin-top:-10vh}
+.ux3d-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;perspective:1300px;perspective-origin:50% 20%;overflow:hidden;padding:70px var(--pad) 20px}
+.ux3d-device{--glare:0%;--shadow:1;position:relative;width:min(1080px,100%,calc((100svh - 150px) * 1.52));padding:14px;border-radius:30px;background:#0d0d0f;box-shadow:0 2px 0 #3a3a40 inset,0 calc(40px + 60px * var(--shadow)) calc(70px + 50px * var(--shadow)) calc(-30px + 10px * var(--shadow)) rgba(39,39,42,.55);transform-origin:50% 100%;will-change:transform}
+.ux3d-cam{position:absolute;top:5px;left:50%;width:6px;height:6px;border-radius:50%;background:#2a2a30;transform:translateX(-50%)}
+.ux3d-device .bk-frame{border-radius:18px;box-shadow:none;border-color:#2a2a30}
+.ux3d-glare{position:absolute;inset:14px;border-radius:18px;pointer-events:none;background:linear-gradient(115deg,transparent calc(var(--glare) - 30%),rgba(255,255,255,.09) var(--glare),transparent calc(var(--glare) + 20%));mix-blend-mode:screen}
+.ux3d-device.is-flat .ux3d-glare{opacity:0;transition:opacity .4s}
+.svc-ux-body{border-bottom:0;background:none}
+@media(max-width:900px){.ux3d-intro{grid-template-columns:1fr;align-items:start;padding-top:50px}}
+@media(max-width:760px){.ux3d-track{height:170vh}.ux3d-sticky{padding:56px 12px 14px;perspective:900px}.ux3d-device{width:min(100%,calc((100svh - 130px) * .68));padding:9px;border-radius:24px}.ux3d-glare{inset:9px}.ux3d-lead{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.ux3d-track{height:auto;margin-top:0}.ux3d-sticky{position:static;height:auto;padding:40px var(--pad)}}

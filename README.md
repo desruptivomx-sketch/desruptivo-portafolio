@@ -6,7 +6,7 @@ Portafolio independiente de la web institucional de Desruptivo. Portada compacta
 
 - `index.html`: portada compacta, carrusel animado de disciplinas (Marketing, Multimedia, Ingeniería) y contacto.
 - `marketing.html`: servicios de Campañas publicitarias (con galería de piezas), Activaciones y Consultoría comercial, cada uno con su espacio para proyectos.
-- `ingenieria.html`: laboratorio interactivo (`engine.js`, motor de partículas en Canvas 2D sin librerías), el juego Desruptivo Breakout (`game.js`) y servicios de Desarrollo de apps, Diseño UX y UI, Automatización, Chatbots y CRM, con ejemplos ilustrativos y espacios para proyectos.
+- `ingenieria.html`: laboratorio interactivo (`engine.js`, motor de partículas en Canvas 2D sin librerías), y servicios de Diseño UX y UI (con el juego Desruptivo Breakout, `game.js`, que entra en 3D al hacer scroll), Desarrollo de apps, Automatización, Chatbots y CRM, con ejemplos ilustrativos y espacios para proyectos.
 - `multimedia.html`: servicios de Video (con los cinco videos), Motion graphics, Diseño gráfico, Branding (con el caso propio Desruptivo) y Naming, cada uno con su espacio para proyectos.
 - `styles.css`: diseño, fuentes, colores y comportamiento en móviles.
 - `projects.js`: catálogo de 13 proyectos (8 de diseño y 5 audiovisuales).
