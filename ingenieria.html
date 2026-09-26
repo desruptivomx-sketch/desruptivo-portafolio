@@ -23,6 +23,7 @@
   <link rel="preload" href="assets/fonts/NewBlack-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script src="engine.js" defer></script>
 </head>
 <body class="category-page">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -42,6 +43,19 @@
       <nav class="category-nav" aria-label="Disciplinas del portafolio"><a href="marketing.html">Marketing</a><a href="ingenieria.html" aria-current="page">Ingeniería</a><a href="multimedia.html">Multimedia</a></nav>
       <nav class="svc-index svc-index-5" aria-label="Servicios de ingeniería"><a href="#apps"><span class="mono">01</span>Desarrollo de apps<span aria-hidden="true">↓</span></a><a href="#uxui"><span class="mono">02</span>Diseño UX y UI<span aria-hidden="true">↓</span></a><a href="#automatizacion"><span class="mono">03</span>Automatización<span aria-hidden="true">↓</span></a><a href="#chatbots"><span class="mono">04</span>Chatbots<span aria-hidden="true">↓</span></a><a href="#crm"><span class="mono">05</span>CRM<span aria-hidden="true">↓</span></a></nav>
     </section>
+    <section class="eng-lab" aria-labelledby="eng-lab-title">
+      <h2 id="eng-lab-title" class="sr-only">Laboratorio de ingeniería: motor de partículas interactivo programado desde cero</h2>
+      <canvas class="eng-canvas" aria-hidden="true"></canvas>
+      <p class="eng-fallback">INGENIERÍA<br>EN VIVO.</p>
+      <div class="eng-hud eng-hud-tl mono"><span class="eng-live"><i></i>DESRUPTIVO ENGINE</span><span>V1.0 · CANVAS 2D · 0 LIBRERÍAS</span></div>
+      <div class="eng-hud eng-hud-tr mono" aria-hidden="true"><span>FPS <b data-fps>--</b></span><span>PARTÍCULAS <b data-count>--</b></span><span>FRAME <b data-ms>--</b></span></div>
+      <div class="eng-bottom">
+        <div class="eng-term mono"><ol class="eng-log" aria-live="polite"></ol><p class="eng-line"><span class="eng-prompt">&gt;</span> <span data-typed></span><span class="eng-caret" aria-hidden="true"></span></p></div>
+        <div class="eng-controls"><div class="eng-chips" role="group" aria-label="Transformar las partículas en"><button class="eng-chip" type="button" aria-pressed="true"><span class="mono">1</span>Ingeniería</button><button class="eng-chip" type="button" aria-pressed="false"><span class="mono">2</span>Apps</button><button class="eng-chip" type="button" aria-pressed="false"><span class="mono">3</span>UX / UI</button><button class="eng-chip" type="button" aria-pressed="false"><span class="mono">4</span>Automatización</button><button class="eng-chip" type="button" aria-pressed="false"><span class="mono">5</span>Chatbots</button><button class="eng-chip" type="button" aria-pressed="false"><span class="mono">6</span>CRM</button></div><button class="eng-burst" type="button">Dispersar <span aria-hidden="true">✳</span></button></div>
+        <p class="eng-hint mono">MUEVE EL CURSOR · HAZ CLIC PARA LANZAR UNA ONDA · TECLAS 1–6</p>
+      </div>
+    </section>
+    <div class="eng-caption page-pad reveal"><p><strong>Todo lo que acabas de mover está programado desde cero.</strong> Sin librerías ni plantillas: miles de partículas con física de resortes, calculadas cuadro por cuadro y ajustadas al dispositivo en que lo ves. Es una muestra pequeña de cómo construimos.</p><ul class="eng-facts mono"><li><b>0</b>LIBRERÍAS</li><li><b data-count-fact>5,600</b>PARTÍCULAS EN TU PANTALLA</li><li><b>60</b>FPS OBJETIVO</li></ul></div>
     <section class="svc page-pad" id="apps" aria-labelledby="apps-title">
       <div class="svc-head reveal"><span class="svc-num mono">01 / SERVICIO</span><h2 id="apps-title" class="scramble">DESARROLLO<br>DE APPS.</h2><p class="svc-lead">Apps y plataformas construidas para durar: código sólido, rendimiento real y sin promesas vacías.</p><h3 class="svc-inc mono">QUÉ INCLUYE</h3><ul class="svc-list"><li>Apps móviles para iOS y Android</li><li>Aplicaciones web a la medida</li><li>Sitios web y landing pages</li><li>Tiendas en línea</li><li>Mantenimiento y soporte</li></ul></div><div class="svc-work"><div class="portfolio-tools"><span class="mono">DESARROLLO DE APPS / PRÓXIMAMENTE</span></div><div class="svc-slots"><div class="svc-slot reveal"><span class="svc-slot-plus" aria-hidden="true">+</span><span class="mono">ESPACIO PARA APP 01</span></div><div class="svc-slot reveal"><span class="svc-slot-plus" aria-hidden="true">+</span><span class="mono">ESPACIO PARA APP 02</span></div><div class="svc-slot reveal"><span class="svc-slot-plus" aria-hidden="true">+</span><span class="mono">ESPACIO PARA APP 03</span></div></div></div>
     </section>
