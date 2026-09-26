@@ -242,3 +242,28 @@
 .brand-case+.svc-slots .svc-slot{aspect-ratio:16/9}
 @media(max-width:1100px){.svc-index-5{grid-template-columns:repeat(3,1fr)}.svc-index-5 a:nth-child(4){padding-left:0;border-left:0}.svc-index-5 a:nth-child(n+4){border-top:1px solid var(--line)}}
 @media(max-width:760px){.svc-index-5{grid-template-columns:1fr}.svc-index-5 a:nth-child(n+2){border-top:1px solid var(--line)}.brand-case-body{grid-template-columns:1fr}.brand-case-logo{border-right:0;border-bottom:1px solid var(--ink);min-height:200px}.brand-case+.svc-slots .svc-slot{display:flex;aspect-ratio:1}}
+
+/* Ingeniería: flujo y chat de ejemplo */
+.flow{border:1px solid var(--ink);background:var(--paper);padding:18px;margin-top:18px}
+.flow-label,.chat-label{font-size:10px;color:var(--red)}
+.flow-nodes{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:26px}
+.flow-nodes li{position:relative;display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--ink);background:#fff8}
+.flow-nodes li .mono{font-size:10px;color:#5c5c57}.flow-nodes b{font-weight:500;font-size:17px}.flow-nodes small{font-size:13px;line-height:1.35;color:#44443f}
+.flow-nodes li+li::before{content:"→";position:absolute;left:-21px;top:50%;transform:translateY(-50%);font:18px Arial,sans-serif;color:var(--red)}
+.flow.in .flow-nodes li{animation:dcPop .55s cubic-bezier(.25,1.6,.45,1) both;animation-delay:calc(var(--k) * 180ms + 150ms)}
+.svc-work-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.chat-demo{margin-top:18px;border:1px solid var(--ink);background:#1d1d20;color:var(--paper);border-radius:22px;padding:14px;overflow:hidden}
+.chat-top{display:flex;gap:10px;align-items:center;padding:4px 4px 14px;border-bottom:1px solid #45454b}
+.chat-top b{display:block;font-weight:500;font-size:15px}.chat-top .mono{font-size:9px;color:#8fb258}
+.chat-avatar{width:36px;height:36px;border-radius:50%;background:var(--red);display:grid;place-items:center;font:700 18px Squid,Impact,sans-serif}
+.chat-body{list-style:none;padding:16px 4px 8px;margin:0;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:82%;padding:10px 13px;border-radius:16px;font-size:14px;line-height:1.4}
+.chat-in{align-self:flex-end;background:#8fb258;color:var(--ink);border-bottom-right-radius:4px}
+.chat-out{align-self:flex-start;background:#35353a;border-bottom-left-radius:4px}
+.chat-demo.in .chat-msg{animation:dcRise .5s cubic-bezier(.2,1.2,.4,1) both;animation-delay:calc(var(--k) * 650ms + 200ms)}
+.chat-label{display:block;text-align:right;margin-top:6px;color:#8b8b85}
+.svc-work-split .svc-slots{grid-template-columns:minmax(0,1fr)}
+.svc-work-split .svc-slot{aspect-ratio:16/9}
+@media(max-width:1100px){.flow-nodes{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-nodes li:nth-child(3)::before{display:none}}
+@media(max-width:760px){.svc-work-split{grid-template-columns:1fr}.flow-nodes{grid-template-columns:1fr;gap:22px}.flow-nodes li+li::before{content:"↓";left:50%;top:-20px;transform:translateX(-50%)}.flow-nodes li:nth-child(3)::before{display:block}.svc-work-split .svc-slots{grid-template-columns:repeat(2,minmax(0,1fr))}.svc-work-split .svc-slot{aspect-ratio:1;display:flex}}
+@media(prefers-reduced-motion:reduce){.flow-nodes li,.chat-msg{animation:none!important}}
