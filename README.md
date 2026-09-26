@@ -7,7 +7,7 @@ Portafolio independiente de la web institucional de Desruptivo. Portada compacta
 - `index.html`: portada compacta, carrusel animado de disciplinas (Marketing, Multimedia, Ingeniería) y contacto.
 - `marketing.html`: servicios de Campañas publicitarias (con galería de piezas), Activaciones y Consultoría comercial, cada uno con su espacio para proyectos.
 - `ingenieria.html`: sección de ingeniería (próximamente).
-- `multimedia.html`: cinco videos de producción audiovisual.
+- `multimedia.html`: servicios de Video (con los cinco videos), Motion graphics, Diseño gráfico, Branding (con el caso propio Desruptivo) y Naming, cada uno con su espacio para proyectos.
 - `styles.css`: diseño, fuentes, colores y comportamiento en móviles.
 - `projects.js`: catálogo de 13 proyectos (8 de diseño y 5 audiovisuales).
 - `app.js`: filtros, galería, menú y navegación por teclado.
