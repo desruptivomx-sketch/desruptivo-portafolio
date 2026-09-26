@@ -35,6 +35,15 @@
     // Cada etiqueta vive en su capa para que se intercambien bajo el divisor.
     compare.querySelector('.ux-notes').append(compare.querySelector('.ux-tag-l'));
     compare.querySelector('.ux-ui').append(compare.querySelector('.ux-tag-r'));
+    const fit = () => {
+      const w = compare.clientWidth;
+      compare.style.setProperty('--cw', (w / 100) + 'px');
+      compare.classList.toggle('lay-phone', w <= 380);
+      compare.classList.toggle('lay-tablet', w > 380 && w <= 640);
+    };
+    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(compare);
+    else window.addEventListener('resize', fit);
     const range = compare.querySelector('.ux-range');
     const set = v => { compare.style.setProperty('--pos', v + '%'); compare.classList.toggle('show-notes', v > 18); };
     range.addEventListener('input', () => { compare.dataset.touched = '1'; set(range.value); });
@@ -141,22 +150,28 @@
     function step() {
       if (!visible || document.hidden) return;
       if (manual()) return;
-      studio.classList.remove('is-manual'); autoLabel.textContent = 'DEMO AUTOMÁTICA';
+      studio.classList.remove('is-manual'); autoLabel.textContent = reduced ? 'DEMO DE COLOR' : 'DEMO AUTOMÁTICA';
       tick++;
+      if (reduced) { if (tick % 2 === 0) setTheme(THEMES[(THEMES.indexOf(studio.dataset.theme) + 1) % THEMES.length]); if (tick % 5 === 0) setDark(!studio.classList.contains('is-dark')); return; }
       moveCursor(tick % 2 ? 'ux' : 'ui');
       if (tick % 3 === 0) setTheme(THEMES[(THEMES.indexOf(studio.dataset.theme) + 1) % THEMES.length]);
       if (tick % 5 === 0) setDevice(DEVICE_ORDER[(DEVICE_ORDER.indexOf(studio.dataset.device) + 1) % 3]);
       if (tick % 7 === 0) setDark(!studio.classList.contains('is-dark'));
       if (tick % 4 === 0) setRadius([0, 6, 12, 20, 28][(tick / 4) % 5]);
     }
-    if (!reduced) {
+    if (reduced) autoLabel.textContent = 'DEMO DE COLOR';
+    const startDemo = () => {
+      clearInterval(timer);
+      if (!reduced) setTimeout(() => { moveCursor('ux'); setTimeout(() => moveCursor('ui'), 900); }, 1200);
+      timer = setInterval(step, 2600);
+    };
+    if ('IntersectionObserver' in window) {
       new IntersectionObserver(entries => entries.forEach(entry => {
         visible = entry.isIntersecting;
-        clearInterval(timer);
-        if (visible) { setTimeout(() => { moveCursor('ux'); setTimeout(() => moveCursor('ui'), 900); }, 1200); timer = setInterval(step, 2600); }
-      }), { threshold: 0.35 }).observe(studio);
-      window.addEventListener('resize', () => { hideSelections(); retarget(400); });
-    }
+        if (visible) startDemo(); else clearInterval(timer);
+      }), { threshold: 0.2 }).observe(studio);
+    } else { visible = true; startDemo(); }
+    if (!reduced) window.addEventListener('resize', () => { hideSelections(); retarget(400); });
     dims.textContent = DEVICES.desktop.join(' × ');
   }
 
