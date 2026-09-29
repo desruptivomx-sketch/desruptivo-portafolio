@@ -21,9 +21,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/SquidBoy-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/NewBlack-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=202609290230">
-  <script src="projects.js?v=202609290230" defer></script><script src="app.js?v=202609290230" defer></script>
-  <script src="deck.js?v=202609290230" defer></script><script src="reel.js?v=202609290230" defer></script>
+  <link rel="stylesheet" href="styles.css?v=202609291900">
+  <script src="projects.js?v=202609291900" defer></script><script src="app.js?v=202609291900" defer></script>
+  <script src="deck.js?v=202609291900" defer></script><script src="brands.js?v=202609291900" defer></script><script src="reel.js?v=202609291900" defer></script>
 </head>
 <body class="category-page">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -100,8 +100,31 @@
       <noscript><p class="studio-noscript">Consulta algunas piezas originales: <a href="assets/projects/selvadentro-amenidades.jpg">Selvadentro</a>, <a href="assets/projects/sacala-hacienda.jpg">Sacalá</a>, <a href="assets/projects/punto-austral-ingredientes.jpg">Punto Austral</a> y <a href="assets/projects/cosmicos-goat-milk.jpg">Cósmicos</a>.</p></noscript>
       <div class="studio-foot"><p>¿Tu marca en la siguiente mesa de trabajo?</p><a class="button" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20me%20interesa%20dise%C3%B1o%20gr%C3%A1fico.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener noreferrer">Hablemos <span aria-hidden="true">↗</span></a></div>
     </section>
-    <section class="svc page-pad" id="branding" aria-labelledby="branding-title">
-      <div class="svc-head reveal"><span class="svc-num mono">04 / SERVICIO</span><h2 id="branding-title" class="scramble">BRANDING.</h2><p class="svc-lead">Marcas con carácter propio: una idea clara, un sistema visual y una voz que se sostienen en cualquier superficie.</p><h3 class="svc-inc mono">QUÉ INCLUYE</h3><ul class="svc-list"><li>Estrategia y posicionamiento de marca</li><li>Identidad visual y logotipo</li><li>Paleta, tipografía y sistema gráfico</li><li>Voz y tono de marca</li><li>Manual de marca</li></ul></div><div class="svc-work"><div class="portfolio-tools"><span class="mono">BRANDING / PROYECTOS</span></div><article class="brand-case reveal"><div class="brand-case-top"><span class="mono">CASO PROPIO / DESRUPTIVO</span><span class="mono">SISTEMA VISUAL DE MARCA</span></div><div class="brand-case-body"><div class="brand-case-logo"><img src="assets/img/logo-desruptivo.png" alt="Logotipo de Desruptivo" width="3591" height="1316" loading="lazy"><img class="brand-case-mascot" src="assets/img/mascota-desruptivo-420.png" alt="Mascota de Desruptivo" loading="lazy"></div><div class="brand-case-info"><h3 class="mono">PALETA</h3><ul class="brand-swatches"><li><span style="background:#c1171a"></span><b>Rojo Desruptivo</b><span class="mono">#C1171A</span></li><li><span style="background:#e8e7df"></span><b>Crema</b><span class="mono">#E8E7DF</span></li><li><span style="background:#27272a"></span><b>Carbón</b><span class="mono">#27272A</span></li><li><span style="background:#8fb258"></span><b>Verde</b><span class="mono">#8FB258</span></li></ul><h3 class="mono">TIPOGRAFÍA</h3><p class="brand-type"><span class="t-squid">Squid Boy</span> titulares · <span>New Black</span> texto · <span class="mono">Monoglyphic</span> detalles</p></div></div></article><a class="svc-cta reveal" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20me%20interesa%20branding.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener noreferrer"><span>¿Tienes un proyecto de branding?</span><b>Hablemos <span aria-hidden="true">↗</span></b></a></div>
+    <section class="studio-svc page-pad" id="branding" aria-labelledby="branding-title">
+      <div class="studio-head">
+        <div class="reveal"><span class="svc-num mono">04 / SERVICIO</span><h2 id="branding-title" class="scramble">BRANDING.</h2><p class="svc-lead">Marcas con carácter propio: una idea clara, un sistema visual y una voz que se sostienen en cualquier superficie. Elige una y la sección se viste de ella.</p></div>
+        <ul class="studio-includes mono reveal"><li>Estrategia y posicionamiento</li><li>Identidad visual y logotipo</li><li>Paleta, tipografía y sistema gráfico</li><li>Voz y tono de marca</li><li>Manual de marca</li></ul>
+      </div>
+      <div class="studio brandlab" id="brandlab">
+        <div class="studio-bar"><div class="studio-file"><span class="mono studio-title"><i aria-hidden="true"></i>Manuales de marca</span><span class="mono studio-count" id="bl-total"></span></div><span class="mono deck-counter" id="bl-counter" aria-hidden="true"></span></div>
+        <div class="bl">
+          <nav class="deck-index" aria-labelledby="bl-index-title"><div class="deck-index-head"><h3 class="mono" id="bl-index-title">Índice</h3><span class="mono" id="bl-brands"></span></div><ul id="bl-list"></ul></nav>
+          <div class="bl-stage">
+            <div class="bl-pages" id="bl-pages" tabindex="0" role="group" aria-roledescription="carrusel" aria-label="Láminas del manual de marca"></div>
+            <div class="bl-nav"><button type="button" class="deck-nav" data-bl="-1" aria-label="Lámina anterior">←</button><div class="bl-thumbs" id="bl-thumbs" role="group" aria-label="Ir a una lámina"></div><button type="button" class="deck-nav" data-bl="1" aria-label="Lámina siguiente">→</button></div>
+          </div>
+          <div class="deck-info bl-info">
+            <div class="deck-meta" aria-live="polite"><span class="mono deck-brand-num" id="bl-num"></span><h3 class="deck-brand-name" id="bl-name"></h3><span class="mono deck-brand-cat" id="bl-cat"></span></div>
+            <p class="deck-desc" id="bl-desc"></p>
+            <div class="bl-block bl-block-pal"><h4 class="mono">Paleta <span>· toca para copiar</span></h4><ul class="bl-palette" id="bl-palette"></ul></div>
+            <div class="bl-block bl-block-type"><h4 class="mono">Tipografía</h4><ul class="bl-fonts" id="bl-fonts"></ul></div>
+            <button type="button" class="deck-open mono" id="bl-open">Ver lámina en grande <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+        <p class="bl-toast mono" id="bl-toast" role="status" aria-live="polite"></p>
+      </div>
+      <noscript><p class="studio-noscript">Consulta los manuales: <a href="assets/branding/desruptivo/01.jpg">Desruptivo</a>, <a href="assets/branding/pajaro-en-piedra/01.jpg">Pájaro en Piedra</a>, <a href="assets/branding/ranchos-verdes/01.jpg">Ranchos Verdes</a> y <a href="assets/branding/faceta/01.jpg">Faceta</a>.</p></noscript>
+      <div class="studio-foot"><p>¿Tu marca en el siguiente manual?</p><a class="button" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20me%20interesa%20branding.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener noreferrer">Hablemos <span aria-hidden="true">↗</span></a></div>
     </section>
     <section class="svc page-pad" id="naming" aria-labelledby="naming-title">
       <div class="svc-head reveal"><span class="svc-num mono">05 / SERVICIO</span><h2 id="naming-title" class="scramble">NAMING.</h2><p class="svc-lead">El nombre es lo primero que la gente dice de tu marca. Lo buscamos, lo probamos y lo defendemos con argumentos.</p><h3 class="svc-inc mono">QUÉ INCLUYE</h3><ul class="svc-list"><li>Exploración creativa de nombres</li><li>Revisión de disponibilidad de dominio y redes</li><li>Búsqueda fonética previa ante el IMPI</li><li>Eslogan y tagline</li><li>Presentación argumentada de propuestas</li></ul></div><div class="svc-work"><div class="portfolio-tools"><span class="mono">NAMING / IDEAS PARA TU MARCA</span></div><div class="idea-grid"><article class="idea reveal idea-paper"><span class="idea-n" aria-hidden="true">01</span><span class="mono">IDEA PARA TU NEGOCIO</span><h3>Nombre para un negocio nuevo</h3><p>De la lista larga a la propuesta final, con dominio y redes revisados.</p></article><article class="idea reveal idea-green"><span class="idea-n" aria-hidden="true">02</span><span class="mono">IDEA PARA TU NEGOCIO</span><h3>Eslogan de campaña</h3><p>Una frase corta que la gente repita sin darse cuenta.</p></article><a class="idea idea-cta reveal" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20me%20interesa%20naming.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener noreferrer"><span class="mono">TU PROYECTO</span><h3>¿Tu proyecto aquí?</h3><p>Cuéntanos qué necesitas y lo hacemos realidad.</p><span class="idea-go">Hablemos <span aria-hidden="true">↗</span></span></a></div></div>
