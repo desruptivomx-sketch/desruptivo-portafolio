@@ -7,9 +7,9 @@ Portafolio independiente de la web institucional de Desruptivo. Portada compacta
 - `index.html`: portada compacta, carrusel animado de disciplinas (Marketing, Multimedia, Ingeniería) y contacto.
 - `marketing.html`: servicios de Campañas publicitarias (con galería de piezas), Activaciones y Consultoría comercial, cada uno con su espacio para proyectos.
 - `ingenieria.html`: laboratorio interactivo (`engine.js`, motor de partículas en Canvas 2D sin librerías), y servicios de Diseño UX y UI (con el juego Desruptivo Breakout, `game.js`, que entra en 3D al hacer scroll, y el laboratorio `uxlab.js`: estudio en vivo con temas, dispositivos y cursores de colaboración, comparador wireframe/interfaz, proceso con progreso y microinteracciones), Desarrollo de apps, Automatización, Chatbots (con asistente en vivo, `chatbot.js`) y CRM, con ejemplos ilustrativos y espacios para proyectos.
-- `multimedia.html`: servicios de Video (sala de proyección `reel.js`: carrusel 3D de reels, luz ambiental, línea de tiempo y reproductor), Motion graphics (tipografía cinética en vivo), Diseño gráfico, Branding (con el caso propio Desruptivo) y Naming, cada uno con su espacio para proyectos.
+- `multimedia.html`: servicios de Video (sala de proyección `reel.js`: carrusel 3D de reels, luz ambiental, línea de tiempo y reproductor), Motion graphics (tipografía cinética en vivo), Diseño gráfico (con la galería de piezas de diseño), Branding (con el caso propio Desruptivo) y Naming, cada uno con su espacio para proyectos.
 - `styles.css`: diseño, fuentes, colores y comportamiento en móviles.
-- `projects.js`: catálogo de 13 proyectos (8 de diseño y 5 audiovisuales).
+- `projects.js`: catálogo de 15 proyectos (10 de diseño y 5 audiovisuales).
 - `app.js`: filtros, galería, menú y navegación por teclado.
 - `assets/`: fuentes, marca, piezas y videos originales, alojados en este repositorio.
 

@@ -280,6 +280,7 @@
   const projects = allProjects.filter(project => {
     if (grid.dataset.collection === 'marketing') return project.category === 'design';
     if (grid.dataset.collection === 'multimedia') return project.category === 'video';
+    if (grid.dataset.collection === 'diseno') return project.category === 'design';
     return true;
   });
   const filters = [...document.querySelectorAll('.filter')];
