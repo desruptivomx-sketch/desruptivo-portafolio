@@ -275,22 +275,23 @@
   document.addEventListener('click', event => { if (!event.target.closest('.site-header')) closeMenu(); });
   document.querySelector('#year').textContent = new Date().getFullYear();
   const grid = document.querySelector('#project-grid');
-  if (!grid) return;
+  const dialog = document.querySelector('#project-dialog');
+  if (!grid && !dialog) return;
   const allProjects = window.DESRUPTIVO_PROJECTS || [];
   const projects = allProjects.filter(project => {
-    if (grid.dataset.collection === 'marketing') return project.category === 'design';
-    if (grid.dataset.collection === 'multimedia') return project.category === 'video';
-    if (grid.dataset.collection === 'diseno') return project.category === 'design';
+    if (grid?.dataset.collection === 'marketing') return project.category === 'design';
+    if (grid?.dataset.collection === 'multimedia') return project.category === 'video';
+    if (grid?.dataset.collection === 'diseno') return project.category === 'design';
     return true;
   });
   const filters = [...document.querySelectorAll('.filter')];
   const moreButton = document.querySelector('#load-more');
   const count = document.querySelector('#project-count');
-  const dialog = document.querySelector('#project-dialog');
   const mediaContainer = document.querySelector('#dialog-media');
   let activeFilter = 'all', shown = 6, currentProject, currentMedia = 0, opener;
 
   function renderProjects() {
+    if (!grid) return;
     const matching = projects.filter(project => activeFilter === 'all' || project.category === activeFilter);
     grid.replaceChildren();
     matching.slice(0, shown).forEach((project, cardPosition) => {
@@ -356,7 +357,7 @@
     shown = 6;
     renderProjects();
   }));
-  moreButton.addEventListener('click', () => {
+  moreButton?.addEventListener('click', () => {
     const firstNewIndex = shown;
     shown += 6;
     renderProjects();
@@ -391,9 +392,9 @@
     document.querySelector('#media-navigation').hidden = currentProject.media.length < 2;
     document.querySelector('#original-media').href = media.src;
   }
-  function openProject(project, trigger) {
+  function openProject(project, trigger, startMedia = 0) {
     currentProject = project;
-    currentMedia = 0;
+    currentMedia = Math.min(Math.max(startMedia, 0), project.media.length - 1);
     opener = trigger;
     document.querySelector('#dialog-title').textContent = project.name;
     document.querySelector('#dialog-description').textContent = project.description;
@@ -426,5 +427,9 @@
     if (event.key === 'ArrowRight') {event.preventDefault();changeMedia(1);}
     if (event.key === 'ArrowLeft') {event.preventDefault();changeMedia(-1);}
   });
+  window.DESRUPTIVO_OPEN = (id, startMedia, trigger) => {
+    const project = allProjects.find(item => item.id === id);
+    if (project) openProject(project, trigger, startMedia);
+  };
   renderProjects();
 })();
