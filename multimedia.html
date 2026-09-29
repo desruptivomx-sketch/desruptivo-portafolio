@@ -21,9 +21,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/SquidBoy-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/NewBlack-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=202609292300">
-  <script src="projects.js?v=202609292300" defer></script><script src="app.js?v=202609292300" defer></script>
-  <script src="deck.js?v=202609292300" defer></script><script src="photos.js?v=202609292300" defer></script><script src="brands.js?v=202609292300" defer></script><script src="reel.js?v=202609292300" defer></script>
+  <link rel="stylesheet" href="styles.css?v=202609300100">
+  <script src="projects.js?v=202609300100" defer></script><script src="app.js?v=202609300100" defer></script>
+  <script src="deck.js?v=202609300100" defer></script><script src="photos.js?v=202609300100" defer></script><script src="brands.js?v=202609300100" defer></script><script src="reel.js?v=202609300100" defer></script>
 </head>
 <body class="category-page">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -69,12 +69,21 @@
     </section>
     <section class="studio-svc page-pad" id="fotografia" aria-labelledby="foto-title">
       <div class="studio-head">
-        <div class="reveal"><span class="svc-num mono">02 / SERVICIO</span><h2 id="foto-title" class="scramble">FOTOGRAFÍA.</h2><p class="svc-lead">Fotografía profesional de producto, espacios y personas. Luz, encuadre y edición pensados para que la imagen venda antes de leer una palabra. Pasa por cada foto: así la vio la cámara.</p></div>
+        <div class="reveal"><span class="svc-num mono">02 / SERVICIO</span><h2 id="foto-title" class="scramble">FOTOGRAFÍA.</h2><p class="svc-lead">Fotografía profesional de producto, espacios y personas. Luz, encuadre y edición pensados para que la imagen venda antes de leer una palabra. Lleva cada foto al centro: así la vio la cámara.</p></div>
         <ul class="studio-includes mono reveal"><li>Producto y gastronomía</li><li>Espacios y locales</li><li>Retrato y lifestyle</li><li>Contenido para redes</li><li>Edición y retoque</li></ul>
       </div>
       <div class="studio photo" id="photo">
         <div class="studio-bar ph-bar"><div class="studio-file"><span class="mono studio-title"><i aria-hidden="true"></i>Cuarto oscuro</span><span class="mono studio-count" id="ph-total"></span></div><div class="ph-filters" id="ph-filters" role="group" aria-label="Filtrar por serie"></div></div>
-        <div class="ph-grid" id="ph-grid"></div>
+        <div class="ph-stage" id="ph-stage" role="group" aria-roledescription="galería" aria-label="Galería de fotografía: arrastra para recorrer, toca una foto para enfocarla y otra vez para verla en grande">
+          <div class="ph-bubbles" id="ph-bubbles"></div>
+          <span class="ph-focus" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <p class="ph-hint mono" id="ph-hint"><span class="ph-hint-fine">Arrastra para recorrer · Clic para enfocar · Clic otra vez para ver en grande</span><span class="ph-hint-touch">Desliza para recorrer · Toca para enfocar · Toca otra vez para ver</span></p>
+        </div>
+        <div class="ph-caption" aria-live="polite">
+          <div class="ph-cap-main"><span class="mono ph-num" id="ph-num"></span><span class="ph-title" id="ph-title"></span><span class="mono ph-serie" id="ph-serie"></span></div>
+          <p class="mono ph-read" id="ph-read"></p>
+          <button type="button" class="ph-open mono" id="ph-open">Ver en grande <span aria-hidden="true">↗</span></button>
+        </div>
       </div>
       <noscript><p class="studio-noscript">Consulta algunas fotos: <a href="assets/fotografia/boro/01.jpg">Boro Helados</a>, <a href="assets/fotografia/caserisimo/01.jpg">Caserísimo</a> y <a href="assets/fotografia/progreso/01.jpg">Progreso</a>.</p></noscript>
       <div class="studio-foot"><p>¿Necesitas fotos que vendan?</p><a class="button" href="https://wa.me/529999064262?text=Hola%20Desruptivo%2C%20me%20interesa%20una%20sesi%C3%B3n%20de%20fotograf%C3%ADa.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener noreferrer">Agenda una sesión <span aria-hidden="true">↗</span></a></div>
