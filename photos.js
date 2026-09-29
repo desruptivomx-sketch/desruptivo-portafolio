@@ -34,7 +34,8 @@
     fig.className = 'ph-item';
     if (io) fig.classList.add('is-latent');
     fig.style.setProperty('--ar', `${m.w} / ${m.h}`);
-    const readout = `${m.f} · ${m.s} · ISO ${m.iso} · ${m.mm}mm`;
+    const hasExif = Boolean(m.f);
+    const readout = hasExif ? `${m.f} · ${m.s} · ISO ${m.iso} · ${m.mm}mm` : (m.note || 'Fotografía');
     fig.innerHTML = `
       <button type="button" class="ph-frame" aria-haspopup="dialog">
         <img alt="" decoding="async" loading="lazy">
@@ -55,7 +56,7 @@
     fig.querySelector('.ph-serie').textContent = s.name;
     const exif = fig.querySelector('.ph-exif');
     exif.innerHTML = '<span class="ph-gear"></span><span></span>';
-    exif.children[0].textContent = `${m.cam} · ${m.lens} · `;
+    exif.children[0].textContent = hasExif ? `${m.cam} · ${m.lens} · ` : '';
     exif.children[1].textContent = readout;
     btn.addEventListener('click', () => window.DESRUPTIVO_OPEN?.(s.id, i, btn));
     return fig;
