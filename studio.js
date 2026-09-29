@@ -18,8 +18,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const narrow = () => matchMedia('(max-width: 760px)').matches;
 
-  const SWATCH = {mcdonalds:'#ffbc0d',selvadentro:'#5c6650',boro:'#aeb8cd',cosmicos:'#ff8fb8',sacala:'#2b3a4a',puntoaustral:'#fe5000',archipielago:'#747d70',bajel:'#6b4a2e',levels:'#dfdcd1',citron:'#93a36b',picking:'#fa8a00'};
-  const BASE = 240, GAP = 28, LABEL = 46, CLUSTER_GAP_X = 110, CLUSTER_GAP_Y = 120, PAD = 80;
+  const BASE = 260, GAP = 40, LABEL = 70, CLUSTER_GAP_X = 170, CLUSTER_GAP_Y = 170, PAD = 110;
   const Z_MIN = 0.18, Z_MAX = 1.3;
 
   const ratio = (w, h) => {
@@ -31,7 +30,7 @@
 
   /* ---------- Construcción ---------- */
   const total = projects.reduce((n, p) => n + p.media.length, 0);
-  studio.querySelector('#studio-count').textContent = `${total} mesas de trabajo`;
+  studio.querySelector('#studio-count').textContent = `${total} piezas · ${projects.length} marcas`;
   studio.querySelector('#studio-layer-total').textContent = `${projects.length} marcas`;
 
   const clusters = projects.map((project, pi) => {
@@ -40,9 +39,10 @@
     el.dataset.id = project.id;
     const label = document.createElement('div');
     label.className = 'studio-cluster-label';
-    label.innerHTML = `<span class="studio-cluster-name"></span><span class="mono"></span>`;
-    label.children[0].textContent = project.name;
-    label.children[1].textContent = `${project.label.replace('DISEÑO / ', '')} · ${project.media.length} ${project.media.length === 1 ? 'pieza' : 'piezas'}`;
+    label.innerHTML = `<span class="studio-cluster-num mono"></span><span class="studio-cluster-name"></span><span class="mono"></span>`;
+    label.children[0].textContent = String(pi + 1).padStart(2, '0');
+    label.children[1].textContent = project.name;
+    label.children[2].textContent = `${project.label.replace('DISEÑO / ', '')} · ${project.media.length} ${project.media.length === 1 ? 'pieza' : 'piezas'}`;
     el.append(label);
     const boards = project.media.map((media, mi) => {
       const w = media.w || 900, h = media.h || 1125;
@@ -52,7 +52,6 @@
       b.setAttribute('aria-label', `${project.name}: ${media.alt}. Pieza ${mi + 1} de ${project.media.length}`);
       b.setAttribute('aria-haspopup', 'dialog');
       b.dataset.ratio = ratio(w, h);
-      b.style.background = SWATCH[project.tone] || '#fff';
       const img = new Image();
       img.dataset.src = small(media.src);
       img.alt = '';
@@ -75,8 +74,8 @@
     b.type = 'button';
     b.className = 'studio-layer';
     b.setAttribute('aria-pressed', 'false');
-    b.innerHTML = `<i aria-hidden="true"></i><span></span><span class="mono"></span>`;
-    b.querySelector('i').style.background = SWATCH[c.project.tone] || '#888';
+    b.innerHTML = `<span class="mono studio-layer-num"></span><span></span><span class="mono"></span>`;
+    b.children[0].textContent = String(c.pi + 1).padStart(2, '0');
     b.children[1].textContent = c.project.name;
     b.children[2].textContent = String(c.boards.length).padStart(2, '0');
     b.addEventListener('mouseenter', () => highlight(c));
@@ -103,7 +102,7 @@
       maxW = Math.max(maxW, x - GAP);
       y += rowH + GAP;
     }
-    c.w = maxW; c.h = y - GAP;
+    c.w = Math.max(maxW, Math.ceil(c.label.scrollWidth) + 12); c.h = y - GAP;
   }
   function layout() {
     mode = narrow() ? 'strip' : 'desk';
@@ -114,13 +113,32 @@
       worldH = Math.max(...clusters.map(c => c.h)) + PAD;
     } else {
       clusters.forEach(c => layoutCluster(c));
+      /* Acomodo tipo "skyline": cada marca va al hueco libre más alto */
       const pack = target => {
-        let x = PAD, y = PAD, shelfH = 0;
+        let sky = [{x: PAD, w: target - PAD, y: PAD}];
         clusters.forEach(c => {
-          if (x > PAD && x + c.w > target) { x = PAD; y += shelfH + CLUSTER_GAP_Y; shelfH = 0; }
-          c.x = x; c.y = y; x += c.w + CLUSTER_GAP_X; shelfH = Math.max(shelfH, c.h);
+          let best = null;
+          for (let i = 0; i < sky.length; i++) {
+            const x = sky[i].x;
+            if (x + c.w > target && x > PAD) continue;
+            let y = 0;
+            for (const s of sky) if (s.x < x + c.w && s.x + s.w > x) y = Math.max(y, s.y);
+            if (!best || y < best.y - 1 || (Math.abs(y - best.y) <= 1 && x < best.x)) best = {x, y};
+          }
+          if (!best) best = {x: PAD, y: Math.max(...sky.map(s => s.y))};
+          c.x = best.x; c.y = best.y;
+          const top = best.y + c.h + CLUSTER_GAP_Y, x0 = best.x, x1 = best.x + c.w + CLUSTER_GAP_X;
+          const next = [];
+          sky.forEach(s => {
+            const sEnd = s.x + s.w;
+            if (sEnd <= x0 || s.x >= x1) { next.push(s); return; }
+            if (s.x < x0) next.push({x: s.x, w: x0 - s.x, y: s.y});
+            if (sEnd > x1) next.push({x: x1, w: sEnd - x1, y: s.y});
+          });
+          next.push({x: x0, w: x1 - x0, y: top});
+          sky = next.sort((p, q) => p.x - q.x);
         });
-        return {w: Math.max(...clusters.map(c => c.x + c.w)) + PAD, h: y + shelfH + PAD};
+        return {w: Math.max(...clusters.map(c => c.x + c.w)) + PAD, h: Math.max(...clusters.map(c => c.y + c.h)) + PAD};
       };
       /* Busca el ancho de mesa cuya forma se parezca más a la ventana visible */
       const aspect = (vw || 1100) / (vh || 640);
@@ -147,7 +165,7 @@
     if (mode === 'strip') canvas.style.height = `${Math.round(worldH * STRIP_Z)}px`;
     else canvas.style.height = '';
   }
-  const STRIP_Z = 0.5;
+  const STRIP_Z = 0.46;
 
   /* ---------- Cámara ---------- */
   const view = {x: 0, y: 0, z: 1};
@@ -197,7 +215,7 @@
     : fitRect(0, 0, worldW, worldH, 1, animate);
   const intro = animate => {
     if (mode === 'strip') return set({z: STRIP_Z, x: 16 - PAD * STRIP_Z}, animate);
-    const z = Math.min(0.6, Math.max(0.36, vw / 2300));
+    const z = Math.min(0.62, Math.max(0.38, vw / 2150));
     set({z, x: 40 - PAD * z, y: 30 - PAD * z}, animate);
   };
 
@@ -332,13 +350,13 @@
       const c = clusters.find(k => k.boards.includes(hovered));
       const a = ((horizontal ? c.x + hovered.x : c.y + hovered.y) * view.z) + offset;
       const b = a + (horizontal ? hovered.w : hovered.h) * view.z;
-      g.fillStyle = 'rgba(240,68,58,.28)';
+      g.fillStyle = 'rgba(193,23,26,.16)';
       horizontal ? g.fillRect(a, 0, b - a, H) : g.fillRect(0, a, W, b - a);
     }
     const steps = [10, 20, 50, 100, 200, 500];
     const minor = steps.find(s => s * view.z >= 7) || 500, major = minor * 5;
     const first = Math.floor(-offset / view.z / minor) * minor;
-    g.fillStyle = 'rgba(232,231,223,.5)';
+    g.fillStyle = 'rgba(39,39,42,.5)';
     g.font = '9px Mono, monospace';
     for (let wv = first; wv * view.z + offset < len; wv += minor) {
       const p = Math.round(wv * view.z + offset) + 0.5;
@@ -376,6 +394,8 @@
     io.observe(canvas);
   } else enter();
 
+  /* Las etiquetas se miden con la tipografía final */
+  document.fonts?.ready.then(() => { layout(); measure(); entered ? set({}) : fitAll(false); });
   let lastMode = mode;
   new ResizeObserver(() => {
     measure();
