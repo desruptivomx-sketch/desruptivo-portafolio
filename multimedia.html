@@ -21,9 +21,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/SquidBoy-Bold.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/NewBlack-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=202609290130">
-  <script src="projects.js?v=202609290130" defer></script><script src="app.js?v=202609290130" defer></script>
-  <script src="studio.js?v=202609290130" defer></script><script src="reel.js?v=202609290130" defer></script>
+  <link rel="stylesheet" href="styles.css?v=202609290230">
+  <script src="projects.js?v=202609290230" defer></script><script src="app.js?v=202609290230" defer></script>
+  <script src="deck.js?v=202609290230" defer></script><script src="reel.js?v=202609290230" defer></script>
 </head>
 <body class="category-page">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -81,25 +81,20 @@
     </section>
     <section class="studio-svc page-pad" id="diseno" aria-labelledby="diseno-title">
       <div class="studio-head">
-        <div class="reveal"><span class="svc-num mono">03 / SERVICIO</span><h2 id="diseno-title" class="scramble">DISEÑO<br>GRÁFICO.</h2><p class="svc-lead">Piezas que se entienden a la primera y se reconocen de lejos, en digital y en impreso. Esta es nuestra mesa de trabajo: recórrela.</p></div>
+        <div class="reveal"><span class="svc-num mono">03 / SERVICIO</span><h2 id="diseno-title" class="scramble">DISEÑO<br>GRÁFICO.</h2><p class="svc-lead">Piezas que se entienden a la primera y se reconocen de lejos, en digital y en impreso. Esta es nuestra mesa de trabajo: lanza cada prueba y mira la siguiente.</p></div>
         <ul class="studio-includes mono reveal"><li>Piezas para redes sociales</li><li>Editorial e impresos</li><li>Empaque y etiquetas</li><li>Señalética y rótulos</li><li>Presentaciones corporativas</li></ul>
       </div>
       <div class="studio" id="studio">
-        <div class="studio-bar">
-          <div class="studio-file"><span class="mono studio-title"><i aria-hidden="true"></i>Mesa de trabajo</span><span class="mono studio-count" id="studio-count"></span></div>
-          <div class="studio-zoom" role="group" aria-label="Zoom de la mesa de trabajo"><button type="button" data-zoom="-1" aria-label="Alejar">−</button><output class="mono" id="studio-zoom" aria-live="polite">100%</output><button type="button" data-zoom="1" aria-label="Acercar">+</button><button type="button" class="mono studio-fit" data-fit>Ver todo</button></div>
-        </div>
-        <div class="studio-body">
-          <div class="studio-rulers" aria-hidden="true"><span class="studio-corner"></span><canvas class="studio-ruler-x"></canvas><canvas class="studio-ruler-y"></canvas></div>
-          <div class="studio-canvas" id="studio-canvas">
-            <div class="studio-world" id="studio-world"></div>
-            <div class="studio-sel" id="studio-sel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="studio-tag mono"></span></div>
-            <p class="studio-hint mono" id="studio-hint"><span class="studio-hint-fine">Arrastra para recorrer · Ctrl + rueda para zoom · Clic para ver la pieza</span><span class="studio-hint-touch">Desliza para recorrer · Toca una pieza para verla</span></p>
+        <div class="studio-bar"><div class="studio-file"><span class="mono studio-title"><i aria-hidden="true"></i>Mesa de trabajo</span><span class="mono studio-count" id="deck-total"></span></div><span class="mono deck-counter" id="deck-counter" aria-hidden="true"></span></div>
+        <div class="deck" id="deck" aria-roledescription="carrusel" aria-label="Piezas de diseño gráfico">
+          <nav class="deck-index" aria-labelledby="deck-index-title"><div class="deck-index-head"><h3 class="mono" id="deck-index-title">Índice</h3><span class="mono" id="deck-brands"></span></div><ul id="deck-list"></ul></nav>
+          <div class="deck-stage-wrap"><div class="deck-stage" id="deck-stage"></div><p class="deck-hint mono" id="deck-hint"><span class="deck-hint-fine">Arrastra la pieza para lanzarla · Clic para verla en grande</span><span class="deck-hint-touch">Desliza la pieza para pasar · Tócala para verla</span></p></div>
+          <div class="deck-info">
+            <div class="deck-meta" aria-live="polite"><span class="mono deck-brand-num"></span><h3 class="deck-brand-name"></h3><span class="mono deck-brand-cat"></span></div>
+            <p class="deck-desc"></p>
+            <div class="deck-foot"><button type="button" class="deck-nav" data-deck="-1" aria-label="Pieza anterior">←</button><div class="deck-progress"><div class="deck-ticks" id="deck-ticks" aria-hidden="true"></div><span class="mono deck-piece" id="deck-piece"></span></div><button type="button" class="deck-nav" data-deck="1" aria-label="Pieza siguiente">→</button></div>
+            <button type="button" class="deck-open mono" id="deck-open">Ver en grande <span aria-hidden="true">↗</span></button>
           </div>
-          <aside class="studio-layers" aria-labelledby="studio-layers-title">
-            <div class="studio-layers-head"><h3 class="mono" id="studio-layers-title">Índice</h3><span class="mono" id="studio-layer-total"></span></div>
-            <ul id="studio-layers"></ul>
-          </aside>
         </div>
       </div>
       <noscript><p class="studio-noscript">Consulta algunas piezas originales: <a href="assets/projects/selvadentro-amenidades.jpg">Selvadentro</a>, <a href="assets/projects/sacala-hacienda.jpg">Sacalá</a>, <a href="assets/projects/punto-austral-ingredientes.jpg">Punto Austral</a> y <a href="assets/projects/cosmicos-goat-milk.jpg">Cósmicos</a>.</p></noscript>
